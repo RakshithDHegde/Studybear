@@ -77,7 +77,7 @@ export default function HideAppBar(props) {
       >
         <CssBaseline />
         <HideOnScroll {...props}>
-          <AppBar color="transparent">
+          <AppBar color="transparent" sx={{ backdropFilter: "blur(20px)" }}>
             <Toolbar>
               <button>
                 <Logo />

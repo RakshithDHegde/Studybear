@@ -1,12 +1,14 @@
 import studybear from "../StudyBear.png";
 import { authentication } from "../firebase-config";
 import { deleteUser } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Loading from "../Loading";
+import { useHistory } from "react-router-dom";
 
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const user = authentication.currentUser;
@@ -49,16 +51,22 @@ const googleSignIn = () => {
     });
 };
 const Modal = (props) => {
+  const history = useHistory();
+  const [loading, setLoading] = useState(true);
   const authCtx = useContext(AuthContext);
+
   useEffect(() => {
     setTimeout(() => {
       onAuthStateChanged(authentication, (user) => {
-        if (user) {
+        if (user.email.includes("@rvce.edu.in")) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           const uid = user.uid;
           console.log(uid);
-          authCtx.login(uid);
+          setTimeout(() => {
+            authCtx.login(uid, user.displayName, user.email, user.photoURL);
+          }, 2000);
+
           // ...
         } else {
           // User is signed out
@@ -67,9 +75,22 @@ const Modal = (props) => {
       });
     });
   }, [googleSignIn]);
+  useEffect(() => {
+    setTimeout(() => {
+      if (authCtx.isLoggedIn) {
+        history.push("/payment");
+      }
+    }, 1000);
+  }, [authCtx]);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
   return (
     <>
-      <div class="grid grid-rows-3 grid-cols-3 gap-0 fixed top-1/4 bottom-1/4 right-1/4 left-1/4 z-50 mx- my-auto ">
+      {loading && <Loading />}
+      <div class="grid grid-rows-3 grid-cols-3 gap-0 fixed top-1/4 bottom-1/4 right-1/4 left-1/4 z-20 mx- my-auto ">
         <div class="row-span-3 col-span-1 ... bg-white flex justify-center rounded-lg drop-shadow-lg ">
           <div className="display-block flex flex-wrap justify-center drop-shadow-md">
             <img
@@ -94,6 +115,7 @@ const Modal = (props) => {
                 <h1 className="text-2xl mr-4 mt-3">X</h1>
               </button>
             </div>
+
             <h1 className="mx-6 mb-16 text-4xl font-semibold font-mono mt-16 display-box">
               Sign in to continue!
             </h1>
