@@ -1,8 +1,9 @@
 import Header from "../Homepage/Header";
 import React, { useState, useEffect, useCallback } from "react";
 import Loading from "../Loading";
-import LeetCode from "../LeetCode.png";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import Three from "../Homepage/Three";
 import Card from "react-animated-3d-card";
 
@@ -111,7 +112,8 @@ const Events = () => {
                     onClick={() => console.log("Card clicked")}
                   >
                     <div className="rounded-lg drop-shadow-3xl  h-full bg-white justify-center">
-                      <img
+                      <LazyLoadImage
+                        effect="blur"
                         onerror="this.onerror=null; this.src='../doubt.png'"
                         className="h-64 mx-auto w-full object-contain"
                         src={image}

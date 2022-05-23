@@ -31,6 +31,8 @@ import Three from "./Three";
 import TypeWriterEffect from "react-typewriter-effect";
 import banner from "../banner.gif";
 import Header from "./Header";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 // const pages = [];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const useStyles = makeStyles({
@@ -63,6 +65,9 @@ const Home = () => {
   const history = useHistory();
   const newsHandler = () => {
     history.push("/news");
+  };
+  const eventsHandler = () => {
+    history.push("/events");
   };
   //   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -291,7 +296,8 @@ const Home = () => {
         <div className="grid mt-16 grid-cols-3 gap-x-44 gap-12 mx-60  justify-center">
           <div className=" bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src="https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png"
                 className="h-24 mx-auto mt-2 "
               />
@@ -300,7 +306,8 @@ const Home = () => {
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
                 className="h-24 mx-auto mt-2 "
               />
@@ -308,8 +315,9 @@ const Home = () => {
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button>
-              <img
+            <button onClick={eventsHandler}>
+              <LazyLoadImage
+                effect="blur"
                 src="https://i.ibb.co/DKSbNk8/business-3d-min.png"
                 className="h-24 mx-auto mt-2 "
               />
@@ -318,7 +326,8 @@ const Home = () => {
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button onClick={newsHandler}>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src="https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png"
                 className="h-24 mx-auto mt-2 "
               />
@@ -327,13 +336,18 @@ const Home = () => {
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button>
-              <img src={circular} className="h-24 mx-auto mt-2 " />
+              <LazyLoadImage
+                effect="blur"
+                src={circular}
+                className="h-24 mx-auto mt-2 "
+              />
               <h2 className="inline mb-2">Circulars</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src="https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png"
                 className="h-24 mx-auto mt-2 "
               />
@@ -343,7 +357,11 @@ const Home = () => {
         </div>
       </div>
       <div className=" mt-32 mx-60 drop-shadow-xl object-contain mb-32">
-        <img className="w-full h-92 object-contain" src={banner} />
+        <LazyLoadImage
+          effect="blur"
+          className="w-full h-92 object-contain"
+          src={banner}
+        />
       </div>
     </>
   );

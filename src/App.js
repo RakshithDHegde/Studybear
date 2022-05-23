@@ -1,5 +1,5 @@
 import * as React from "react";
-import WrapperLandingPage from "./LandingPage/WrapperLandingPage";
+// import WrapperLandingPage from "./LandingPage/WrapperLandingPage";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Payment from "./PaymentPage/Payment";
@@ -10,9 +10,16 @@ import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Loading from "./Loading";
-import Home from "./Homepage/Home";
-import News from "./Functionality/News";
-import Events from "./Functionality/Events";
+// import Home from "./Homepage/Home";
+// import News from "./Functionality/News";
+// import Events from "./Functionality/Events";
+
+const News = React.lazy(() => import("./Functionality/News"));
+const Home = React.lazy(() => import("./Homepage/Home"));
+const WrapperLandingPage = React.lazy(() =>
+  import("./LandingPage/WrapperLandingPage")
+);
+const Events = React.lazy(() => import("./Functionality/Events"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,57 +46,59 @@ function App() {
   }, 800);
   return (
     <div>
-      {loading && <Loading />}
-      <Switch>
-        <Route path="/" exact>
-          <WrapperLandingPage />
-        </Route>
-        {/* {!isLoggedIn && (
+      <React.Suspense fallback={Loading}>
+        {loading && <Loading />}
+        <Switch>
+          <Route path="/" exact>
+            <WrapperLandingPage />
+          </Route>
+          {/* {!isLoggedIn && (
           <Route path="/" exact>
             <WrapperLandingPage />
           </Route>
         )} */}
-        {/* {isLoggedIn && (
+          {/* {isLoggedIn && (
           <Route path="/" exact>
             <Redirect to="/payment" />
           </Route>
         )} */}
 
-        {!isLoggedIn && (
-          <Route path="/payment" exact>
-            <Redirect to="/" />
-          </Route>
-        )}
-        {isLoggedIn && (
-          <Route path="/payment" exact>
-            <Payment />
-          </Route>
-        )}
-        {isLoggedIn && (
-          <Route path="/payment" exact>
-            <Redirect to="/home"></Redirect>
-          </Route>
-        )}
-        {/* {!isLoggedIn && (
+          {!isLoggedIn && (
+            <Route path="/payment" exact>
+              <Redirect to="/" />
+            </Route>
+          )}
+          {isLoggedIn && (
+            <Route path="/payment" exact>
+              <Payment />
+            </Route>
+          )}
+          {isLoggedIn && (
+            <Route path="/payment" exact>
+              <Redirect to="/home"></Redirect>
+            </Route>
+          )}
+          {/* {!isLoggedIn && (
           <Route path="/home" exact>
             <Redirect to="/" />
           </Route>
         )} */}
-        {isLoggedIn && (
-          <Route path="/home" exact>
-            <Home />
-          </Route>
-        )}
-        {isLoggedIn && (
-          <Route path="/news" exact>
-            <News />
-          </Route>
-        )}
+          {isLoggedIn && (
+            <Route path="/home" exact>
+              <Home />
+            </Route>
+          )}
+          {isLoggedIn && (
+            <Route path="/news" exact>
+              <News />
+            </Route>
+          )}
 
-        <Route path="/events" exact>
-          <Events />
-        </Route>
-      </Switch>
+          <Route path="/events" exact>
+            <Events />
+          </Route>
+        </Switch>
+      </React.Suspense>
     </div>
   );
 }

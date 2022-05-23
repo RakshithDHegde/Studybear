@@ -114,6 +114,9 @@ const Header = (props) => {
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const eventsHandler = () => {
+    history.push("/events");
+  };
 
   const newsHandler = () => {
     history.push("/news");
@@ -272,7 +275,7 @@ const Header = (props) => {
         <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
           <button className="">
             <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button>
+              <button onClick={eventsHandler}>
                 <img
                   src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-outline-sbts2018.png"
                   className="h-11"

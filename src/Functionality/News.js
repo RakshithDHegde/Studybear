@@ -3,9 +3,13 @@ import Header from "../Homepage/Header";
 import React, { useState, useEffect, useCallback } from "react";
 import Loading from "../Loading";
 
-import Three from "../Homepage/Three";
+// import LazyImage from "react-lazy-progressive-image";
 
+import Three from "../Homepage/Three";
+// import LazyLoad from "react-lazy-load";
 import Card from "react-animated-3d-card";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -75,8 +79,9 @@ const News = () => {
                     onClick={() => console.log("Card clicked")}
                   >
                     <div className="rounded-lg drop-shadow-3xl  h-full bg-white justify-center">
-                      <img
+                      <LazyLoadImage
                         onerror="this.onerror=null; this.src='../doubt.png'"
+                        effect="blur"
                         className="h-64 mx-auto w-full object-cover"
                         src={new1.image}
                         onError={({ currentTarget }) => {
@@ -85,14 +90,15 @@ const News = () => {
                             "https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png";
                         }}
                       />
+
                       <div className="bg-slate-100">
                         <h2 className="mx-5 font-sans text-xl">{new1.title}</h2>
                       </div>
-                      <h2 className="my-5 mx-3 font-mono text-ellipsis">
+                      <h2 className="my-5  mx-3 font-mono text-ellipsis">
                         {new1.description}
                       </h2>
                       <div className="flex justify-center">
-                        <h1 className="absolute bottom-0 pb-2 mx-auto">
+                        <h1 className="absolute mt-3 bottom-0 pb-2 mx-auto">
                           {new1.published.substring(0, 10)}
                         </h1>
                       </div>
