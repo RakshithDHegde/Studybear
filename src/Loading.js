@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Loading = () => {
   return (
     <>
-      <div className="h-full fixed top-0 bottom-0 w-full z-20 bg-white text-center ">
+      <div className="h-full fixed top-0 bottom-0 w-full z-30 bg-white text-center ">
         <motion.div
           animate={{ y: [0, 50, 0] }}
           transition={{

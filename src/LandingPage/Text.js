@@ -2,6 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import Animation from "../Animation2.gif";
 import Button from "@mui/material/Button";
+import notes from "../notesh.png";
+import mentor from "../mentorh.png";
+import newspaper from "../newspaperh.png";
+import event from "../eventh.png";
+import talk from "../talkh.png";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
