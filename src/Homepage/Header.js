@@ -124,6 +124,9 @@ const Header = (props) => {
   const homeHandler = () => {
     history.push("/home");
   };
+  const notesHandler = () => {
+    history.push("/notes");
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -249,7 +252,7 @@ const Header = (props) => {
         <div class="row-span-1 ... justify-center flex flex-wrap text-center  my-auto ">
           <button className="">
             <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button>
+              <button onClick={notesHandler}>
                 <img
                   src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/000000/external-notes-vlog-blogging-content-creation-smashingstocks-detailed-outline-smashing-stocks.png"
                   className="h-12"

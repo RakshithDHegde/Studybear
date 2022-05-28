@@ -9,6 +9,9 @@ import AuthContext from "../store/auth-context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Loading from "../Loading";
 import { useHistory } from "react-router-dom";
+import { ref, set } from "firebase/database";
+import { database } from "../firebase-config";
+import { update } from "firebase/database";
 
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const user = authentication.currentUser;
@@ -58,6 +61,11 @@ const Modal = (props) => {
   useEffect(() => {
     setTimeout(() => {
       onAuthStateChanged(authentication, (user) => {
+        const uid = user.uid;
+        const name = user.displayName;
+        const email = user.email;
+        const photourl = user.photoURL;
+
         if (user.email.includes("@rvce.edu.in")) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
@@ -66,6 +74,20 @@ const Modal = (props) => {
           setTimeout(() => {
             authCtx.login(uid, user.displayName, user.email, user.photoURL);
           }, 2000);
+
+          function UpdateData() {
+            update(ref(database, "users/" + uid), {
+              name: name,
+              email: email,
+
+              photourl: photourl,
+            })
+              .then(() => {})
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+          UpdateData();
 
           // ...
         } else {

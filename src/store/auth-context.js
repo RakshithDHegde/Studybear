@@ -3,11 +3,12 @@ const AuthContext = React.createContext({
   uid: "",
   email: "",
   name: "",
+  semester: "",
   photoUrl: "",
   paymentid: "",
   paymentBit: false,
   isLoggedIn: false,
-  payment: (paymentid) => {},
+  payment: (paymentid, semester) => {},
   login: (uid, name, email) => {},
   logout: () => {},
 });
@@ -18,6 +19,7 @@ export const AuthContextProvider = (props) => {
   const [email, setEmail] = useState(null);
   const [paymentid, setPaymentId] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null);
+  const [semester, setSemester] = useState(null);
 
   const userIsLoggedIn = !!uid;
   const paymentIsDone = !!paymentid;
@@ -29,8 +31,9 @@ export const AuthContextProvider = (props) => {
     setPhotoUrl(photoUrl);
   };
 
-  const paymentHandler = (paymentid) => {
+  const paymentHandler = (paymentid, semester) => {
     setPaymentId(paymentid);
+    setSemester(semester);
   };
 
   const logOutHandler = () => {
@@ -48,6 +51,7 @@ export const AuthContextProvider = (props) => {
     paymentBit: paymentIsDone,
     name: name,
     photoUrl: photoUrl,
+    semester: semester,
     login: loginHandler,
     logout: logOutHandler,
     payment: paymentHandler,

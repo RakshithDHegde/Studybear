@@ -69,6 +69,9 @@ const Home = () => {
   const eventsHandler = () => {
     history.push("/events");
   };
+  const notesHandler = () => {
+    history.push("/notes");
+  };
   //   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -295,13 +298,13 @@ const Home = () => {
         </div>
         <div className="grid mt-16 grid-cols-3 gap-x-44 gap-12 mx-60  justify-center">
           <div className=" bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button>
+            <button onClick={notesHandler}>
               <LazyLoadImage
                 effect="blur"
                 src="https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png"
-                className="h-24 mx-auto mt-2 "
+                className="h-24 mx-auto mt-2 block "
               />
-              <h2 className="inline mb-2">Notes</h2>
+              <h2 className="block mb-2 ">Notes</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -311,7 +314,7 @@ const Home = () => {
                 src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="inline mb-2">Discussion</h2>
+              <h2 className="block mb-2">Discussion</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -321,7 +324,7 @@ const Home = () => {
                 src="https://i.ibb.co/DKSbNk8/business-3d-min.png"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="inline mb-2">Coding Events</h2>
+              <h2 className="block mb-2">Coding Events</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -331,7 +334,7 @@ const Home = () => {
                 src="https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="inline mb-2">News</h2>
+              <h2 className="block mb-2">News</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -341,7 +344,7 @@ const Home = () => {
                 src={circular}
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="inline mb-2">Circulars</h2>
+              <h2 className="block mb-2">Circulars</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -351,7 +354,7 @@ const Home = () => {
                 src="https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="inline mb-2">Connect to Teacher</h2>
+              <h2 className="block mb-2">Connect to Teacher</h2>
             </button>
           </div>
         </div>

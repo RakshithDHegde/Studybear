@@ -9,7 +9,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../store/auth-context";
 import { onAuthStateChanged } from "firebase/auth";
-import { authentication } from "../firebase-config";
+import { authentication, database } from "../firebase-config";
 import Loading from "../Loading";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -21,7 +21,8 @@ import { useCallback } from "react";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import { ref, set } from "firebase/database";
+import { update } from "firebase/database";
 const logoutHandler = () => {
   signOut(authentication)
     .then(() => {
@@ -52,6 +53,9 @@ const Payment = (props) => {
         const name1 = authCtx.name;
         const email1 = authCtx.email;
         const phone1 = data.phoneNumber;
+        const uid = authCtx.uid;
+        const semnumber = data.semInputElement;
+        // const photourl = authCtx.photoUrl;
 
         var options = {
           key: "rzp_test_7SEnIiCpXDpvwA",
@@ -67,7 +71,25 @@ const Payment = (props) => {
           // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
           handler: function (response) {
             alert(response.razorpay_payment_id);
-            authCtx.payment(response.razorpay_payment_id);
+            authCtx.payment(response.razorpay_payment_id, semnumber);
+            const paymentid = response.razorpay_payment_id;
+            function UpdateData() {
+              update(ref(database, "users/" + uid), {
+                paidbit: true,
+                extrapoints: 0,
+                totaluploads: 0,
+                totalviews: 0,
+                razorpaypaymentid: paymentid,
+                semester: semnumber,
+
+                phonenumber: phone1,
+              })
+                .then(() => {})
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+            UpdateData();
 
             // <Redirect to="/home">
             // alert(response.razorpay_order_id);
@@ -122,6 +144,7 @@ const Payment = (props) => {
   useEffect(() => {
     if (authCtx.paymentBit) {
       history.push("/home");
+      // console.log(authCtx.semester);
     }
   }, [authCtx]);
   const [age, setAge] = React.useState("");

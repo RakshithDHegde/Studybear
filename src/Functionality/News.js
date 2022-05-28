@@ -2,8 +2,10 @@ import Header from "../Homepage/Header";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Loading from "../Loading";
+import { database } from "../firebase-config";
 
 // import LazyImage from "react-lazy-progressive-image";
+import { ref, child, get } from "firebase/database";
 
 import Three from "../Homepage/Three";
 // import LazyLoad from "react-lazy-load";
