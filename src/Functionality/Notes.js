@@ -16,6 +16,7 @@ import { storage } from "../firebase-config";
 import { ref as sRef, getDownloadURL } from "firebase/storage";
 import { update } from "firebase/database";
 // import { push } from "firebase/database";
+
 import * as React from "react";
 
 import LinearProgress from "@mui/material/LinearProgress";
@@ -53,6 +54,33 @@ const Notes = () => {
   const topicHandler = (event) => {
     sessionStorage.setItem("topic", event.target.value);
     setTopi(event.target.value);
+  };
+
+  const uploadIncrementer = () => {
+    let a;
+    get(child(ref(database), `users/${authCtx.uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          a = snapshot.child("totaluploads").val() + 1;
+          console.log(snapshot.child("totaluploads").val());
+          update(ref(database, `users/${authCtx.uid}`), {
+            totaluploads: a,
+          })
+            .then(() => {})
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    // let v1 = views + 1;
+
+    console.log(typeof v1);
   };
 
   useEffect(() => {
@@ -127,6 +155,7 @@ const Notes = () => {
                   setBar(false);
                   alert("Uploaded");
                   searchHandler1();
+                  uploadIncrementer();
                 })
                 .catch((error) => {
                   console.log(error);

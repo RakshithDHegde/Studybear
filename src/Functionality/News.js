@@ -7,6 +7,9 @@ import { database } from "../firebase-config";
 
 // import LazyImage from "react-lazy-progressive-image";
 import { ref, child, get } from "firebase/database";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
+import { update } from "firebase/database";
 
 import Three from "../Homepage/Three";
 // import LazyLoad from "react-lazy-load";
@@ -18,6 +21,39 @@ const News = () => {
   const [news, setNews] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   //   const [error, setError] = useState(null);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    let a;
+    get(child(ref(database), `users/${authCtx.uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          a = snapshot.child("extrapoints").val() + 5;
+          console.log(snapshot.child("totalviews").val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    // let v1 = views + 1;
+    const timer = setTimeout(() => {
+      console.log(typeof v1);
+      function UpdateData() {
+        update(ref(database, `users/${authCtx.uid}`), {
+          extrapoints: a,
+        })
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      UpdateData();
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const fetchNewsHandler = useCallback(async () => {
     setIsloading(true);

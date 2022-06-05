@@ -27,6 +27,9 @@ const Profile = React.lazy(() => import("./Settings/Profile"));
 const Teachers = React.lazy(() => import("./Functionality/Teachers"));
 const Circular = React.lazy(() => import("./Functionality/Circular"));
 const NotesReader = React.lazy(() => import("./Functionality/NotesReader"));
+const Leaderboard = React.lazy(() => {
+  import("./Settings/Leaderboard");
+});
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -156,6 +159,11 @@ function App() {
           {isLoggedIn && payment1 && (
             <Route path="/reader" exact>
               <NotesReader />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/leaderboard" exact>
+              <Leaderboard />
             </Route>
           )}
         </Switch>
