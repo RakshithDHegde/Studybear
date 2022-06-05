@@ -22,6 +22,14 @@ const WrapperLandingPage = React.lazy(() =>
 );
 const Notes = React.lazy(() => import("./Functionality/Notes"));
 const Events = React.lazy(() => import("./Functionality/Events"));
+const Discuss = React.lazy(() => import("./Functionality/Discuss"));
+const Profile = React.lazy(() => import("./Settings/Profile"));
+const Teachers = React.lazy(() => import("./Functionality/Teachers"));
+const Circular = React.lazy(() => import("./Functionality/Circular"));
+const NotesReader = React.lazy(() => import("./Functionality/NotesReader"));
+const Leaderboard = React.lazy(() => {
+  import("./Settings/Leaderboard");
+});
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -121,6 +129,41 @@ function App() {
           {isLoggedIn && payment1 && (
             <Route path="/events" exact>
               <Events />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/discuss" exact>
+              <Discuss />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/profile" exact>
+              <Profile />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/teachers" exact>
+              <Teachers />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/teachers" exact>
+              <Teachers />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/circulars" exact>
+              <Circular />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/reader" exact>
+              <NotesReader />
+            </Route>
+          )}
+          {isLoggedIn && payment1 && (
+            <Route path="/leaderboard" exact>
+              <Leaderboard />
             </Route>
           )}
         </Switch>

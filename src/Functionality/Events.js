@@ -6,11 +6,47 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Three from "../Homepage/Three";
 import Card from "react-animated-3d-card";
-
+import { database } from "../firebase-config";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
+import { update, ref, child, get } from "firebase/database";
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   //   const [error, setError] = useState(null);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    let a;
+    get(child(ref(database), `users/${authCtx.uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          a = snapshot.child("extrapoints").val() + 5;
+          console.log(snapshot.child("totalviews").val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    // let v1 = views + 1;
+    const timer = setTimeout(() => {
+      console.log(typeof v1);
+      function UpdateData() {
+        update(ref(database, `users/${authCtx.uid}`), {
+          extrapoints: a,
+        })
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      UpdateData();
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const fetchEventsHandler = useCallback(async () => {
     setIsloading(true);
@@ -57,7 +93,7 @@ const Events = () => {
       </div>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="grid grid-cols-2 ml-48 gap-y-24 my-28 justify-center text-center ">
+        <div className="grid grid-cols-2  justify-center gap-y-24 mx-12   text-center ">
           {events.map((event) => {
             const startDate = new Date(
               Date.parse(event.startTime)
@@ -100,7 +136,7 @@ const Events = () => {
             }
 
             return (
-              <div>
+              <div className="justify-center text-center mx-auto">
                 <a href={event.url} target="_blank">
                   <Card
                     style={{
@@ -108,6 +144,8 @@ const Events = () => {
                       width: "450px",
                       height: "510px",
                       cursor: "pointer",
+                      p: "auto",
+                      ml: "3",
                     }}
                     onClick={() => console.log("Card clicked")}
                   >

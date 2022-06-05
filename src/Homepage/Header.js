@@ -37,7 +37,7 @@ import Link from "@material-ui/core/Link";
 import Three from "./Three";
 import banner from "../banner.gif";
 const pages = [];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Leaderboard", "Logout"];
 const useStyles = makeStyles({
   link: {
     color: "black",
@@ -114,6 +114,9 @@ const Header = (props) => {
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const teacherHandler = () => {
+    history.push("/teachers");
+  };
   const eventsHandler = () => {
     history.push("/events");
   };
@@ -126,6 +129,12 @@ const Header = (props) => {
   };
   const notesHandler = () => {
     history.push("/notes");
+  };
+  const discussHandler = () => {
+    history.push("/discuss");
+  };
+  const circularHandler = () => {
+    history.push("/circulars");
   };
 
   const handleOpenNavMenu = (event) => {
@@ -152,6 +161,8 @@ const Header = (props) => {
         .catch((error) => {
           // An error happened.
         });
+    } else if (form === "Profile") {
+      history.push("/profile");
     }
     setAnchorElUser(null);
   };
@@ -162,12 +173,20 @@ const Header = (props) => {
       <AppBar
         position="static"
         sx={{ backdropFilter: "blur(20px)", background: "#38bdf8" }}
+        justify="center"
+        alignItems="center"
+        alignContent="center"
       >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters justify="space-between">
-            <button onClick={homeHandler}>
+        <Container
+          maxWidth="xl"
+          justify="center"
+          alignItems="center"
+          alignContent="center"
+        >
+          <Toolbar disableGutters>
+            <button onClick={homeHandler} className=" absolute left-1/2  ">
               <img
-                className="h-20 ml-96 pl-72 pr-8 "
+                className="relative right-2/3 h-20 "
                 src={logo}
                 alt="Studybear"
               />
@@ -214,7 +233,10 @@ const Header = (props) => {
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0, pb: 1, pt: 1 }}
+                >
                   <Avatar alt="Remy Sharp" src={authCtx.photoUrl} />
                 </IconButton>
               </Tooltip>
@@ -265,7 +287,7 @@ const Header = (props) => {
         <div class="col-span-1 ... justify-center text-center my-auto ">
           <button className="">
             <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button>
+              <button onClick={discussHandler}>
                 <img
                   src="https://img.icons8.com/ios-filled/50/000000/comment-discussion.png"
                   className="h-11"
@@ -304,7 +326,7 @@ const Header = (props) => {
         <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
           <button className="">
             <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button>
+              <button onClick={circularHandler}>
                 <img
                   src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
                   className="h-11"
@@ -315,7 +337,7 @@ const Header = (props) => {
           </button>
         </div>
         <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
-          <button className="">
+          <button className="" onClick={teacherHandler}>
             <Link sx={{ p: "2" }} underline="never" className={classes.link}>
               <button>
                 <img
