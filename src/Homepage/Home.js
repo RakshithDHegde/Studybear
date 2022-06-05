@@ -72,6 +72,15 @@ const Home = () => {
   const notesHandler = () => {
     history.push("/notes");
   };
+  const discussHandler = () => {
+    history.push("/discuss");
+  };
+  const teacherHandler = () => {
+    history.push("/teachers");
+  };
+  const circularHandler = () => {
+    history.push("/circulars");
+  };
   //   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -308,7 +317,7 @@ const Home = () => {
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button>
+            <button onClick={discussHandler}>
               <LazyLoadImage
                 effect="blur"
                 src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
@@ -338,7 +347,7 @@ const Home = () => {
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button>
+            <button onClick={circularHandler}>
               <LazyLoadImage
                 effect="blur"
                 src={circular}
@@ -348,7 +357,7 @@ const Home = () => {
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button>
+            <button onClick={teacherHandler}>
               <LazyLoadImage
                 effect="blur"
                 src="https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png"

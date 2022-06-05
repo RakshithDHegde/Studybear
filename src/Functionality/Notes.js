@@ -9,12 +9,16 @@ import InputLabel from "@mui/material/InputLabel";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Router } from "react-router-dom";
+import { withRouter } from "react-router";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { uploadBytesResumable } from "firebase/storage";
 import { storage } from "../firebase-config";
 import { ref as sRef, getDownloadURL } from "firebase/storage";
 import { update } from "firebase/database";
 // import { push } from "firebase/database";
+import * as React from "react";
+
+import LinearProgress from "@mui/material/LinearProgress";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import AuthContext from "../store/auth-context";
@@ -29,6 +33,8 @@ const Notes = () => {
   const [uploads, setUploads] = useState([]);
   const [finalObj, setFinalObj] = useState([]);
   const [fileaaa, setFileaaa] = useState("");
+  const [pro, setPro] = useState(0);
+  const [bar, setBar] = useState(false);
 
   // const fileHandler = (event) => {
   //   setFile(event.target[0].files[0]);
@@ -37,14 +43,23 @@ const Notes = () => {
 
   const subjectHandler = (event) => {
     setSub(event.target.value);
+    sessionStorage.setItem("subject", event.target.value);
     console.log(JSON.stringify(event.target.value));
   };
   const unitHandler = (event) => {
+    sessionStorage.setItem("unit", event.target.value);
     setUni(event.target.value);
   };
   const topicHandler = (event) => {
+    sessionStorage.setItem("topic", event.target.value);
     setTopi(event.target.value);
   };
+
+  useEffect(() => {
+    setTopi(sessionStorage.getItem("topic"));
+    setUni(sessionStorage.getItem("unit"));
+    setSub(sessionStorage.getItem("subject"));
+  }, []);
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(fileaaa);
@@ -52,6 +67,7 @@ const Notes = () => {
       alert("Please enter all the fields");
     } else {
       const storageRef = sRef(storage, fileaaa.name);
+      setBar(true);
 
       // 'file' comes from the Blob or File API
       const uploadTask = uploadBytesResumable(storageRef, fileaaa);
@@ -62,6 +78,7 @@ const Notes = () => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setPro(progress);
           console.log("Upload is " + progress + "% done");
           switch (snapshot.state) {
             case "paused":
@@ -106,7 +123,11 @@ const Notes = () => {
                 ),
                 obje
               )
-                .then(() => {})
+                .then(() => {
+                  setBar(false);
+                  alert("Uploaded");
+                  searchHandler1();
+                })
                 .catch((error) => {
                   console.log(error);
                 });
@@ -179,6 +200,26 @@ const Notes = () => {
       });
   }, [uni, sub]);
 
+  const searchHandler1 = () => {
+    get(
+      child(
+        ref(database),
+        `branch/is/${authCtx.semester}/2018/subjects/${sub}/units/${uni}/${topi}`
+      )
+    )
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setUploads(Object.entries(snapshot.val()));
+          console.log(Object.entries(snapshot.val()));
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const searchHandler = (event) => {
     event.preventDefault();
     if (sub === "" || topi === "" || uni === "") {
@@ -216,6 +257,7 @@ const Notes = () => {
             setFinalObj((prev) => [
               ...prev,
               {
+                uid: up[0],
                 name: snapshot.child("name").val(),
                 extrapoints: snapshot.child("extrapoints").val(),
                 totalviews: snapshot.child("totalviews").val(),
@@ -236,6 +278,15 @@ const Notes = () => {
   return (
     <>
       <Header />
+
+      {bar && (
+        <LinearProgress
+          variant="determinate"
+          className="w-full absolute bottom-0 "
+          max={100}
+          value={pro}
+        />
+      )}
       <h1 className="text-5xl mx-auto mt-6 text-center font-serif mb-6">
         Notes
       </h1>
@@ -325,6 +376,7 @@ const Notes = () => {
           className="grid grid-cols-2  gap-4 drop-shadow-xl my-10 rounded-lg  mx-96 justify-center "
         >
           {finalObj.map((obj) => {
+            console.log(obj);
             let reputation = "";
             const totalpoints =
               obj.extrapoints + obj.totaluploads * 20 + obj.totalviews * 1;
@@ -335,9 +387,15 @@ const Notes = () => {
             } else {
               reputation = "Low";
             }
+            const url = obj.url;
 
             return (
-              <a href={obj.url} target="_blank">
+              <Link
+                to={{
+                  pathname: "/reader",
+                  state: { hoo: obj.url, uid: obj.uid },
+                }}
+              >
                 <div className=" bg-slate-100 rounded-lg text-center ">
                   <LazyLoadImage
                     className="object-contain h-60 mx-auto my-4"
@@ -347,7 +405,7 @@ const Notes = () => {
                   <h1 className="">Author's Name: {obj.name}</h1>
                   <h1 className="my-4">Reputation: {reputation}</h1>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -355,4 +413,4 @@ const Notes = () => {
     </>
   );
 };
-export default Notes;
+export default withRouter(Notes);

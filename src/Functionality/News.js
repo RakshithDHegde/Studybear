@@ -3,6 +3,7 @@ import Header from "../Homepage/Header";
 import React, { useState, useEffect, useCallback } from "react";
 import Loading from "../Loading";
 import { database } from "../firebase-config";
+// "https://newsapi.org/v2/everything?q=technology%20and%20IT&language=en&pageSize=100&sortBy=publishedAt&apiKey=968caa08d86f44f999c31ca48bca1f6e"
 
 // import LazyImage from "react-lazy-progressive-image";
 import { ref, child, get } from "firebase/database";
@@ -24,10 +25,10 @@ const News = () => {
 
     try {
       const response = await fetch(
-        "https://newsapi.org/v2/everything?q=technology%20and%20IT&language=en&pageSize=100&sortBy=publishedAt&apiKey=aac813f823e14db2b637f2ca8fe4ebf9"
+        "https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json"
       );
       if (!response.ok) {
-        throw new Error("Something Went Wrong");
+        throw new Error(response);
       }
       const data = await response.json();
 
@@ -63,13 +64,13 @@ const News = () => {
       </div>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="grid grid-cols-2 ml-48 gap-y-24 my-28 justify-center text-center ">
+        <div className="grid grid-cols-2 gap-y-24 mx-12  justify-center text-center ">
           {news.map((new1) => {
             if (new1.image === null) {
               new1.image = "https://i.ibb.co/q1vR1BZ/broken-1.png";
             }
             return (
-              <div>
+              <div className="mx-auto">
                 <a href={new1.url} target="_blank">
                   <Card
                     style={{

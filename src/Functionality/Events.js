@@ -57,7 +57,7 @@ const Events = () => {
       </div>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="grid grid-cols-2 ml-48 gap-y-24 my-28 justify-center text-center ">
+        <div className="grid grid-cols-2  justify-center gap-y-24 mx-12   text-center ">
           {events.map((event) => {
             const startDate = new Date(
               Date.parse(event.startTime)
@@ -100,7 +100,7 @@ const Events = () => {
             }
 
             return (
-              <div>
+              <div className="justify-center text-center mx-auto">
                 <a href={event.url} target="_blank">
                   <Card
                     style={{
@@ -108,6 +108,8 @@ const Events = () => {
                       width: "450px",
                       height: "510px",
                       cursor: "pointer",
+                      p: "auto",
+                      ml: "3",
                     }}
                     onClick={() => console.log("Card clicked")}
                   >
