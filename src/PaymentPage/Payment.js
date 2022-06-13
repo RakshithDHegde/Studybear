@@ -58,8 +58,8 @@ const Payment = (props) => {
         // const photourl = authCtx.photoUrl;
 
         var options = {
-          key: "rzp_test_7SEnIiCpXDpvwA",
-          key_secret: "NRtWxzYijYvrt3BJhjHGmlNv",
+          key: "rzp_live_9JdTljlGTGUHDM",
+          key_secret: "X4YVaBxXMUGwfzmKUHxpD3T2",
           // Enter the Key ID generated from the Dashboard
           amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
           currency: "INR",

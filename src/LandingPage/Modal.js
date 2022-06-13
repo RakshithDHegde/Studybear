@@ -9,7 +9,7 @@ import AuthContext from "../store/auth-context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Loading from "../Loading";
 import { useHistory } from "react-router-dom";
-import { ref, set } from "firebase/database";
+import { ref, set, get, child } from "firebase/database";
 import { database } from "../firebase-config";
 import { update } from "firebase/database";
 
@@ -53,10 +53,30 @@ const googleSignIn = () => {
       alert("Authentication Failed :(, Check connectivity");
     });
 };
+
 const Modal = (props) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const authCtx = useContext(AuthContext);
+  const uid = authCtx.uid;
+
+  useEffect(() => {
+    get(child(ref(database), `users/${uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.child("email").val());
+          authCtx.payment(
+            snapshot.child("razorpaypaymentid").val(),
+            snapshot.child("semester").val()
+          );
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -99,8 +119,10 @@ const Modal = (props) => {
   }, [googleSignIn]);
   useEffect(() => {
     setTimeout(() => {
-      if (authCtx.isLoggedIn) {
+      if (authCtx.isLoggedIn && !authCtx.paymentBit) {
         history.push("/payment");
+      } else if (authCtx.isLoggedIn && authCtx.paymentBit) {
+        history.push("/home");
       }
     }, 1000);
   }, [authCtx]);
@@ -112,7 +134,7 @@ const Modal = (props) => {
   return (
     <>
       {loading && <Loading />}
-      <div class="grid grid-rows-3 grid-cols-3 gap-0 fixed top-1/4 bottom-1/4 right-1/4 left-1/4 z-20 mx- my-auto ">
+      <div class="grid grid-rows-3 grid-cols-3 gap-0 fixed lg:top-1/4 lg:bottom-1/4 lg:right-1/4 lg:left-1/4 z-20  bottom-1/3 my-auto ">
         <div class="row-span-3 col-span-1 ... bg-white flex justify-center rounded-lg drop-shadow-lg ">
           <div className="display-block flex flex-wrap justify-center drop-shadow-md">
             <img
@@ -121,7 +143,7 @@ const Modal = (props) => {
               width={100}
               alt="studybear logo"
             />
-            <h1 className="mx-6 mb-16 text-3xl  font-semibold font-mono">
+            <h1 className="mx-6 mb-16 lg:text-2xl text-lg  font-semibold font-mono">
               Experience Studybear Now!
             </h1>
           </div>

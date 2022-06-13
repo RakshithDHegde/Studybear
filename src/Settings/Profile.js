@@ -33,7 +33,7 @@ const Profile = () => {
           points1 =
             snapshot.child("extrapoints").val() +
             snapshot.child("totaluploads").val() * 20 +
-            snapshot.child("totalviews").val() * 2;
+            snapshot.child("totalviews").val() * 10;
           console.log(points1);
           setUploads(snapshot.child("totaluploads").val());
           setPoints(points1);
@@ -69,7 +69,7 @@ const Profile = () => {
       <Header />
 
       <div className="bg-slate-100 rounded-2xl drop-shadow-xl my-12 items-center justify-center text-center mx-44 mt-12">
-        <h1 className="mt-12 text-slate-100">h</h1>
+        <h1 className="mt-12 text-slate-100">studybear</h1>
         <Avatar
           alt="Remy Sharp"
           sx={{ width: 125, height: 125, mx: "auto", my: 2 }}
