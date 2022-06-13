@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
+import { useMediaQuery } from "react-responsive";
 
 // import { spacing } from "@mui/system";
 import Text from "./Text";
@@ -68,55 +69,75 @@ const useStyles = makeStyles({
 });
 
 export default function HideAppBar(props) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
   const classes = useStyles();
   return (
     <>
       <div
-        className="pb-10 mb-0.5 z-0"
+        className="pb-10 mb-0.5 z-0 w-full lg-w-full"
         style={{ backgroundImage: `url(${Background})` }}
       >
         <CssBaseline />
         <HideOnScroll {...props}>
           <AppBar color="transparent" sx={{ backdropFilter: "blur(20px)" }}>
             <Toolbar>
-              <button>
+              <button className="">
                 <Logo />
               </button>
-              <Typography
-                variant="h4"
-                component="div"
-                style={{ fontFamily: "Roboto" }}
-                color="black"
-                sx={{ fontWeight: "Bold" }}
-              >
-                studybear
-              </Typography>
+              <div className="sm:w-1/4">
+                <Typography
+                  variant="h4"
+                  component="div"
+                  style={{ fontFamily: "Roboto" }}
+                  color="black"
+                  sx={{ fontWeight: "Bold" }}
+                  fontSize={{
+                    lg: 30,
+                    md: 20,
+                    sm: 25,
+                    xs: 25,
+                  }}
+                >
+                  studybear
+                </Typography>
+              </div>
               <Grid container justifyContent="flex-end">
-                <Box sx={{ mx: 2, my: 4 }}>
-                  <Link
-                    sx={{ p: "2" }}
-                    underline="never"
-                    className={classes.link}
-                  >
-                    <button>
-                      <Typography component="span">Home</Typography>
-                    </button>
-                  </Link>
-                </Box>
-                <Box sx={{ mx: 2, my: 4 }}>
-                  <Link underline="never" className={classes.link}>
-                    <button>
-                      <Typography component="span">Features</Typography>
-                    </button>
-                  </Link>
-                </Box>
-                <Box sx={{ my: 4, mr: 4, ml: 2 }}>
-                  <Link underline="never" className={classes.link}>
-                    <button>
-                      <Typography component="span">About</Typography>
-                    </button>
-                  </Link>
-                </Box>
+                {isDesktopOrLaptop && (
+                  <Box sx={{ mx: 2, my: 4 }}>
+                    <Link
+                      sx={{ p: "2" }}
+                      underline="never"
+                      className={classes.link}
+                    >
+                      <button>
+                        <Typography component="span">Home</Typography>
+                      </button>
+                    </Link>
+                  </Box>
+                )}
+                {isDesktopOrLaptop && (
+                  <Box sx={{ mx: 2, my: 4 }}>
+                    <Link underline="never" className={classes.link}>
+                      <button>
+                        <Typography component="span">Features</Typography>
+                      </button>
+                    </Link>
+                  </Box>
+                )}
+                {isDesktopOrLaptop && (
+                  <Box sx={{ my: 4, mr: 4, ml: 2 }}>
+                    <Link underline="never" className={classes.link}>
+                      <button>
+                        <Typography component="span">About</Typography>
+                      </button>
+                    </Link>
+                  </Box>
+                )}
 
                 <Button
                   color="success"
@@ -127,7 +148,17 @@ export default function HideAppBar(props) {
                   sx={{ my: 2.5 }}
                   onClick={props.modalAdd}
                 >
-                  <Typography variant="h7">Get Started</Typography>
+                  <Typography
+                    fontSize={{
+                      lg: 15,
+                      md: 20,
+                      sm: 15,
+                      xs: 12,
+                    }}
+                    variant="h7"
+                  >
+                    Get Started
+                  </Typography>
                 </Button>
               </Grid>
             </Toolbar>

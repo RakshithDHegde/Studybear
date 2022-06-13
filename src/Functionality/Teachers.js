@@ -13,6 +13,7 @@ const Teachers = () => {
           console.log(
             JSON.parse(JSON.stringify(Object.values(snapshot.val())))
           );
+
           setDatab(JSON.parse(JSON.stringify(Object.values(snapshot.val()))));
         } else {
           console.log("No data available");
@@ -21,7 +22,7 @@ const Teachers = () => {
       .catch((error) => {
         console.error(error);
       });
-  });
+  }, []);
 
   return (
     <>
@@ -60,7 +61,7 @@ const Teachers = () => {
                     </div>
                   </Fade>
                   <Fade bottom duration={1200}>
-                    <h1 className="font-mono mx-6 text-xl absolute bottom-1/2 inline-flex text-ellipsis">
+                    <h1 className="font-mono mr-48 ml-6 text-xl absolute bottom-1/2 break-words inline-flex text-ellipsis">
                       Specializtion:{data.specialization}
                     </h1>
                   </Fade>

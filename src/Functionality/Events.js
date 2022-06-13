@@ -43,7 +43,7 @@ const Events = () => {
           });
       }
       UpdateData();
-    }, 10000);
+    }, 120000);
 
     return () => clearTimeout(timer);
   }, []);

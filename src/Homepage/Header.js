@@ -17,6 +17,7 @@ import Grid from "@material-ui/core/Grid";
 import Zoom from "@mui/material/Zoom";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useMediaQuery } from "react-responsive";
 
 import Slide from "@mui/material/Slide";
 import logo from "../StudyBear.png";
@@ -36,6 +37,8 @@ import circular from "../circular.png";
 import Link from "@material-ui/core/Link";
 import Three from "./Three";
 import banner from "../banner.gif";
+import Leaderboard from "../Settings/Leaderboard";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 const pages = [];
 const settings = ["Profile", "Leaderboard", "Logout"];
 const useStyles = makeStyles({
@@ -110,6 +113,9 @@ ScrollTop.propTypes = {
 };
 
 const Header = (props) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
   const classes = useStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -163,6 +169,8 @@ const Header = (props) => {
         });
     } else if (form === "Profile") {
       history.push("/profile");
+    } else if (form == "Leaderboard") {
+      history.push("/leaderboard");
     }
     setAnchorElUser(null);
   };
@@ -176,6 +184,7 @@ const Header = (props) => {
         justify="center"
         alignItems="center"
         alignContent="center"
+        width="full"
       >
         <Container
           maxWidth="xl"
@@ -184,6 +193,24 @@ const Header = (props) => {
           alignContent="center"
         >
           <Toolbar disableGutters>
+            {!isDesktopOrLaptop && (
+              <>
+                <button className="hover:">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </>
+            )}
             <button onClick={homeHandler} className=" absolute left-1/2  ">
               <img
                 className="relative right-2/3 h-20 "
@@ -267,89 +294,91 @@ const Header = (props) => {
         </Container>
       </AppBar>
 
-      <div
-        id="back-to-top-anchor"
-        className="grid grid-rows-1 grid-flow-col gap-40 bg-white drop-shadow-xl   justify-center z-50"
-      >
-        <div class="row-span-1 ... justify-center flex flex-wrap text-center  my-auto ">
-          <button className="">
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button onClick={notesHandler}>
-                <img
-                  src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/000000/external-notes-vlog-blogging-content-creation-smashingstocks-detailed-outline-smashing-stocks.png"
-                  className="h-12"
-                />
-                <h2 className="mx-auto">Notes</h2>
-              </button>
-            </Link>
-          </button>
+      {isDesktopOrLaptop && (
+        <div
+          id="back-to-top-anchor"
+          className="grid grid-rows-1 grid-flow-col gap-40 bg-white drop-shadow-xl   justify-center z-50"
+        >
+          <div class="row-span-1 ... justify-center flex flex-wrap text-center  my-auto ">
+            <button className="">
+              <Link sx={{ p: "2" }} underline="never" className={classes.link}>
+                <button onClick={notesHandler}>
+                  <img
+                    src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/000000/external-notes-vlog-blogging-content-creation-smashingstocks-detailed-outline-smashing-stocks.png"
+                    className="h-12"
+                  />
+                  <h2 className="mx-auto">Notes</h2>
+                </button>
+              </Link>
+            </button>
+          </div>
+          <div class="col-span-1 ... justify-center text-center my-auto ">
+            <button className="">
+              <a href="https://discord.gg/mhrprvmFEt" target="_blank">
+                <button>
+                  <img
+                    src="https://img.icons8.com/ios-filled/50/000000/comment-discussion.png"
+                    className="h-11"
+                  />
+                  <h2 className="mx-auto">Discuss</h2>
+                </button>
+              </a>
+            </button>
+          </div>
+          <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
+            <button className="">
+              <Link sx={{ p: "2" }} underline="never" className={classes.link}>
+                <button onClick={eventsHandler}>
+                  <img
+                    src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-outline-sbts2018.png"
+                    className="h-11"
+                  />
+                  <h2 className="mx-auto">Events</h2>
+                </button>
+              </Link>
+            </button>
+          </div>
+          <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
+            <button className="">
+              <Link sx={{ p: "2" }} underline="never" className={classes.link}>
+                <button onClick={newsHandler}>
+                  <img
+                    src="https://img.icons8.com/ios/50/000000/news.png "
+                    className="h-11"
+                  />
+                  <h2 className="mx-auto">News</h2>
+                </button>
+              </Link>
+            </button>
+          </div>
+          <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
+            <button className="">
+              <Link sx={{ p: "2" }} underline="never" className={classes.link}>
+                <button onClick={circularHandler}>
+                  <img
+                    src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
+                    className="h-11"
+                  />
+                  <h2 className="mx-auto">Circulars</h2>
+                </button>
+              </Link>
+            </button>
+          </div>
+          <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
+            <button className="" onClick={teacherHandler}>
+              <Link sx={{ p: "2" }} underline="never" className={classes.link}>
+                <button>
+                  <img
+                    src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
+                    className="h-11"
+                  />
+                  <h2 className="mx-auto">Teachers</h2>
+                </button>
+              </Link>
+            </button>
+          </div>
         </div>
-        <div class="col-span-1 ... justify-center text-center my-auto ">
-          <button className="">
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button onClick={discussHandler}>
-                <img
-                  src="https://img.icons8.com/ios-filled/50/000000/comment-discussion.png"
-                  className="h-11"
-                />
-                <h2 className="mx-auto">Discuss</h2>
-              </button>
-            </Link>
-          </button>
-        </div>
-        <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
-          <button className="">
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button onClick={eventsHandler}>
-                <img
-                  src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-outline-sbts2018.png"
-                  className="h-11"
-                />
-                <h2 className="mx-auto">Events</h2>
-              </button>
-            </Link>
-          </button>
-        </div>
-        <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
-          <button className="">
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button onClick={newsHandler}>
-                <img
-                  src="https://img.icons8.com/ios/50/000000/news.png "
-                  className="h-11"
-                />
-                <h2 className="mx-auto">News</h2>
-              </button>
-            </Link>
-          </button>
-        </div>
-        <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
-          <button className="">
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button onClick={circularHandler}>
-                <img
-                  src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
-                  className="h-11"
-                />
-                <h2 className="mx-auto">Circulars</h2>
-              </button>
-            </Link>
-          </button>
-        </div>
-        <div class="row-span-1 col-span-1 ... justify-center text-center my-auto ">
-          <button className="" onClick={teacherHandler}>
-            <Link sx={{ p: "2" }} underline="never" className={classes.link}>
-              <button>
-                <img
-                  src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
-                  className="h-11"
-                />
-                <h2 className="mx-auto">Teachers</h2>
-              </button>
-            </Link>
-          </button>
-        </div>
-      </div>
+      )}
       <ScrollTop {...props}>
         <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

@@ -305,7 +305,7 @@ const Home = () => {
             //   scrollArea={myAppRef}
           />
         </div>
-        <div className="grid mt-16 grid-cols-3 gap-x-44 gap-12 mx-60  justify-center">
+        <div className="grid mt-16 lg:grid-cols-3 lg:gap-x-44 lg:gap-12 lg:mx-60 mx-10 gap-5 grid-cols-2  justify-center">
           <div className=" bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button onClick={notesHandler}>
               <LazyLoadImage
@@ -316,16 +316,20 @@ const Home = () => {
               <h2 className="block mb-2 ">Notes</h2>
             </button>
           </div>
+
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
-            <button onClick={discussHandler}>
-              <LazyLoadImage
-                effect="blur"
-                src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
-                className="h-24 mx-auto mt-2 "
-              />
-              <h2 className="block mb-2">Discussion</h2>
-            </button>
+            <a href="https://discord.gg/mhrprvmFEt" target="_blank">
+              <button>
+                <LazyLoadImage
+                  effect="blur"
+                  src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
+                  className="h-24 mx-auto mt-2 "
+                />
+                <h2 className="block mb-2">Discussion</h2>
+              </button>
+            </a>
           </div>
+
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button onClick={eventsHandler}>
               <LazyLoadImage

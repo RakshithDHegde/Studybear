@@ -51,7 +51,7 @@ const NotesReader = (props) => {
           });
       }
       UpdateData();
-    }, 10000);
+    }, 120000);
 
     return () => clearTimeout(timer);
   }, []);

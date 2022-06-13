@@ -1,6 +1,6 @@
 import Header from "../Homepage/Header";
 import { database } from "../firebase-config";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { ref, child, get, set, push } from "firebase/database";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -36,6 +36,10 @@ const Notes = () => {
   const [fileaaa, setFileaaa] = useState("");
   const [pro, setPro] = useState(0);
   const [bar, setBar] = useState(false);
+
+  const myRef = useRef(null);
+
+  const executeScroll = () => myRef.current.scrollIntoView();
 
   // const fileHandler = (event) => {
   //   setFile(event.target[0].files[0]);
@@ -272,6 +276,9 @@ const Notes = () => {
           console.error(error);
         });
     }
+    setTimeout(() => {
+      executeScroll();
+    }, 1000);
   };
 
   useEffect(() => {
@@ -403,6 +410,7 @@ const Notes = () => {
         <div
           id="pdfs"
           className="grid grid-cols-2  gap-4 drop-shadow-xl my-10 rounded-lg  mx-96 justify-center "
+          ref={myRef}
         >
           {finalObj.map((obj) => {
             console.log(obj);
@@ -425,7 +433,10 @@ const Notes = () => {
                   state: { hoo: obj.url, uid: obj.uid },
                 }}
               >
-                <div className=" bg-slate-100 rounded-lg text-center ">
+                <div
+                  className=" bg-slate-100 rounded-lg text-center "
+                  id="pdfs"
+                >
                   <LazyLoadImage
                     className="object-contain h-60 mx-auto my-4"
                     src="https://i.ibb.co/jfvtB8F/pdf-file-4059096-3364019.png"

@@ -50,7 +50,7 @@ const News = () => {
           });
       }
       UpdateData();
-    }, 10000);
+    }, 120000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -61,7 +61,7 @@ const News = () => {
 
     try {
       const response = await fetch(
-        "https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json"
+        "https://newsapi.org/v2/everything?q=technology%20and%20IT&language=en&pageSize=100&sortBy=publishedAt&apiKey=968caa08d86f44f999c31ca48bca1f6e"
       );
       if (!response.ok) {
         throw new Error(response);
