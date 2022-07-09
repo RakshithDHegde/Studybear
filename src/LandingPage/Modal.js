@@ -64,13 +64,11 @@ const Modal = (props) => {
     get(child(ref(database), `users/${uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.child("email").val());
           authCtx.payment(
             snapshot.child("razorpaypaymentid").val(),
             snapshot.child("semester").val()
           );
         } else {
-          console.log("No data available");
         }
       })
       .catch((error) => {
@@ -82,7 +80,16 @@ const Modal = (props) => {
     setTimeout(() => {
       onAuthStateChanged(authentication, (user) => {
         const uid = user.uid;
-        const name = user.displayName;
+        let name;
+        if (
+          user.displayName !== "RAKSHITH DATTATRAYA HEGDE" &&
+          user.displayName !== "M S SANDEEP KAMATH"
+        ) {
+          name = user.displayName;
+        } else {
+          name = "Studybear";
+        }
+
         const email = user.email;
         const photourl = user.photoURL;
 
@@ -90,7 +97,7 @@ const Modal = (props) => {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           const uid = user.uid;
-          console.log(uid);
+
           setTimeout(() => {
             authCtx.login(uid, user.displayName, user.email, user.photoURL);
           }, 2000);
@@ -187,9 +194,7 @@ const Modal = (props) => {
                   Sign in with Google
                 </button>
               </div>
-              <p className="text-sm mt-4">
-                🔒We never post without your permission
-              </p>
+              <p className="text-sm mt-4">🔒Use RVCE e-mail id only</p>
             </div>
           </div>
         </div>

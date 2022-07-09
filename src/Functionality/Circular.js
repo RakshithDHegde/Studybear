@@ -10,7 +10,6 @@ const Circular = () => {
     get(child(ref(database), `branch/is/circulars`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(Object.entries(snapshot.val()));
           setCircular(Object.entries(snapshot.val()));
         } else {
           console.log("No data available");
@@ -25,10 +24,10 @@ const Circular = () => {
       <Header />
 
       <div className="flex justify-center my-11">
-        <h1 className=" mx-auto text-6xl font-serif">CIRCULARS</h1>
+        <h1 className=" mx-auto lg:text-6xl text-3xl font-serif">CIRCULARS</h1>
       </div>
       <Fade bottom duration={1200}>
-        <div className="bg-white rounded-xl drop-shadow-xl mx-72 ">
+        <div className="bg-white rounded-xl drop-shadow-xl lg:mx-72 mx-5 ">
           {circular.map((cir) => {
             return (
               <>
@@ -36,14 +35,14 @@ const Circular = () => {
                   <Fade bottom duration={1200}>
                     <div className="my-12 bg-slate-100 text-left rounded-xl grid grid-cols-2">
                       <div>
-                        <h1 className="text-3xl mx-12 my-12 font-serif  ">
+                        <h1 className="lg:text-3xl text-xl mx-12  mt-9 lg:mx-12 lg:my-12 font-serif  ">
                           {cir[0]}
                         </h1>
                       </div>
                       <div className="flex justify-end mr-7">
                         <img
                           src="https://i.ibb.co/ZT92635/rvce.png"
-                          className="py-3"
+                          className="object-contain lg:py-3 mt-4 lg:h-36 h-20 my-4"
                         ></img>
                       </div>
                     </div>

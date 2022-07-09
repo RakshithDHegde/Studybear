@@ -10,10 +10,6 @@ const Teachers = () => {
     get(child(ref(database), `branch/is/teachers`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(
-            JSON.parse(JSON.stringify(Object.values(snapshot.val())))
-          );
-
           setDatab(JSON.parse(JSON.stringify(Object.values(snapshot.val()))));
         } else {
           console.log("No data available");
@@ -28,11 +24,11 @@ const Teachers = () => {
     <>
       <Header />
       <div className="flex justify-center my-11">
-        <h1 className=" mx-auto text-6xl font-serif flex">
+        <h1 className=" lg:mx-auto lg:text-6xl font-serif flex text-center text-3xl mx-3">
           CONNECT TO TEACHERS
         </h1>
       </div>
-      <div className="bg-white drop-shadow-xl my-12 mx-36 rounded-xl">
+      <div className="bg-white drop-shadow-xl lg:my-12 lg:mx-36 my-4 mx-8 rounded-xl">
         {datab.map((data) => {
           let icon;
           let whatsapp = `https://wa.me/91${data.mobile}`;
@@ -49,34 +45,34 @@ const Teachers = () => {
                 <div className="bg-slate-100 mt-16  drop-shadow-xl rounded-xl">
                   <Fade bottom duration={1200}>
                     <div className="grid grid-cols-2">
-                      <h1 className="text-5xl mx-6 pt-7  font-medium font-mono ">
+                      <h1 className="lg:text-5xl lg:mx-6 lg:pt-7 pt-3 ml-3 text-base  font-medium font-mono ">
                         {data.name}
                       </h1>
                       <div className=" flex justify-end ">
                         <img
                           src={data.url}
-                          className="object-contain ml-full h-full w-44 mt-6 mx-10 "
+                          className="object-contain lg:ml-full h-full lg:w-44  w-20 mt-6 mr-3 "
                         ></img>
                       </div>
                     </div>
                   </Fade>
                   <Fade bottom duration={1200}>
-                    <h1 className="font-mono mr-48 ml-6 text-xl absolute bottom-1/2 break-words inline-flex text-ellipsis">
+                    <h1 className="font-mono mr-48 lg:ml-6 ml-3 lg:mt-0 lg:text-xl text-xs absolute lg:bottom-1/2 top-1/3 break-words inline-flex text-ellipsis">
                       Specializtion:{data.specialization}
                     </h1>
                   </Fade>
                   <Fade bottom duration={1200}>
-                    <div className="flex py-6">
+                    <div className="flex lg:py-6 lg:ml:0 ml-6 pt-6 pb-3">
                       <a href={mail} target="_blank">
                         <img
-                          className="h-16 ml-12 flex"
+                          className="lg:h-16 lg:ml-12 object-contain h-8 flex"
                           src="https://i.ibb.co/Cthzn60/gmail.png"
                         ></img>
                       </a>
                       {icon && (
                         <a href={whatsapp} target="_blank">
                           <img
-                            className="h-16 ml-12 "
+                            className="lg:h-16 h-8 object-contain ml-12 "
                             src="https://i.ibb.co/0DrvF64/whatsapp.png"
                           ></img>
                         </a>

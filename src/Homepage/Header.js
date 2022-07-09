@@ -18,6 +18,7 @@ import Zoom from "@mui/material/Zoom";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useMediaQuery } from "react-responsive";
+import Logo from "../LandingPage/Logo";
 
 import Slide from "@mui/material/Slide";
 import logo from "../StudyBear.png";
@@ -118,29 +119,37 @@ const Header = (props) => {
   });
   const classes = useStyles();
   const history = useHistory();
+  const [sidebar, setSidebar] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const teacherHandler = () => {
     history.push("/teachers");
+    setSidebar(false);
   };
   const eventsHandler = () => {
     history.push("/events");
+    setSidebar(false);
   };
 
   const newsHandler = () => {
     history.push("/news");
+    setSidebar(false);
   };
   const homeHandler = () => {
     history.push("/home");
+    setSidebar(false);
   };
   const notesHandler = () => {
     history.push("/notes");
+    setSidebar(false);
   };
   const discussHandler = () => {
     history.push("/discuss");
+    setSidebar(false);
   };
   const circularHandler = () => {
     history.push("/circulars");
+    setSidebar(false);
   };
 
   const handleOpenNavMenu = (event) => {
@@ -148,10 +157,18 @@ const Header = (props) => {
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    setSidebar(false);
   };
 
   const handleCloseNavMenu = (event) => {
     setAnchorElNav(null);
+  };
+
+  const remover = () => {
+    setSidebar(false);
+  };
+  const opener = () => {
+    setSidebar(true);
   };
 
   const handleCloseUserMenu = (event) => {
@@ -195,7 +212,7 @@ const Header = (props) => {
           <Toolbar disableGutters>
             {!isDesktopOrLaptop && (
               <>
-                <button className="hover:">
+                <button onClick={opener} className="hover:">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-7 w-7"
@@ -379,11 +396,116 @@ const Header = (props) => {
           </div>
         </div>
       )}
-      <ScrollTop {...props}>
-        <Fab color="primary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+
+      {!isDesktopOrLaptop && sidebar && (
+        <>
+          <aside
+            class="w-64 fixed top-0 z-30  h-full   rounded-r-5xl"
+            aria-label="Sidebar"
+          >
+            <div class="overflow-y-auto py-4 px-3 h-full bg-gray-50 rounded ">
+              <a href="/" class="flex items-center pl-2.5 mb-5">
+                <Logo />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                  Studybear
+                </span>
+              </a>
+              <ul class="space-y-8 py-auto">
+                <li>
+                  <button
+                    onClick={notesHandler}
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                  >
+                    <img
+                      src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/000000/external-notes-vlog-blogging-content-creation-smashingstocks-detailed-outline-smashing-stocks.png"
+                      className="h-9"
+                    />
+                    <span class="ml-3 ">Notes</span>
+                  </button>
+                </li>
+                <li>
+                  <a
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                    href="https://discord.gg/mhrprvmFEt"
+                    target="_blank"
+                  >
+                    <img
+                      src="https://img.icons8.com/ios-filled/50/000000/comment-discussion.png"
+                      className="h-9"
+                    />
+                    <span class="flex-1 ml-3 whitespace-nowrap">
+                      Discussion
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <button
+                    onClick={eventsHandler}
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                  >
+                    <img
+                      src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-outline-sbts2018.png"
+                      className="h-9"
+                    />
+                    <span class="flex-1 ml-3 whitespace-nowrap">
+                      Coding Events
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={newsHandler}
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                  >
+                    <img
+                      src="https://img.icons8.com/ios/50/000000/news.png "
+                      className="h-9"
+                    />
+                    <span class="flex-1 ml-3 whitespace-nowrap">News</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={circularHandler}
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                  >
+                    <img
+                      src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
+                      className="h-9"
+                    />
+                    <span class="flex-1 ml-3 whitespace-nowrap">Circulars</span>
+                  </button>
+                </li>
+                <li className="pb-12">
+                  <button
+                    onClick={teacherHandler}
+                    class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
+                  >
+                    <img
+                      src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
+                      className="h-9"
+                    />
+                    <span class="flex-1 ml-3 whitespace-nowrap">
+                      Connect To Teachers
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          <div
+            className="fixed h-full w-full backdrop-blur-xl z-20"
+            onClick={remover}
+          ></div>
+        </>
+      )}
+      {isDesktopOrLaptop && (
+        <ScrollTop {...props}>
+          <Fab color="primary" size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      )}
     </>
   );
 };

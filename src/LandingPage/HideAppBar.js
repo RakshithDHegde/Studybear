@@ -80,7 +80,10 @@ export default function HideAppBar(props) {
     <>
       <div
         className="pb-10 mb-0.5 z-0 w-full lg-w-full"
-        style={{ backgroundImage: `url(${Background})` }}
+        style={{
+          backgroundImage: `url(${Background})`,
+          backgroundSize: `100% 100%`,
+        }}
       >
         <CssBaseline />
         <HideOnScroll {...props}>
@@ -107,34 +110,40 @@ export default function HideAppBar(props) {
                 </Typography>
               </div>
               <Grid container justifyContent="flex-end">
-                {isDesktopOrLaptop && (
+                {/* {isDesktopOrLaptop && (
                   <Box sx={{ mx: 2, my: 4 }}>
                     <Link
                       sx={{ p: "2" }}
                       underline="never"
                       className={classes.link}
                     >
-                      <button>
-                        <Typography component="span">Home</Typography>
-                      </button>
+                      <a>
+                        <button>
+                          <Typography component="span">Home</Typography>
+                        </button>
+                      </a>
                     </Link>
                   </Box>
-                )}
+                )} */}
                 {isDesktopOrLaptop && (
-                  <Box sx={{ mx: 2, my: 4 }}>
+                  <Box sx={{ my: 4, mr: 4, ml: 2 }}>
                     <Link underline="never" className={classes.link}>
-                      <button>
-                        <Typography component="span">Features</Typography>
-                      </button>
+                      <a href="/about" target="_blank">
+                        <button>
+                          <Typography component="span">About us</Typography>
+                        </button>
+                      </a>
                     </Link>
                   </Box>
                 )}
                 {isDesktopOrLaptop && (
                   <Box sx={{ my: 4, mr: 4, ml: 2 }}>
                     <Link underline="never" className={classes.link}>
-                      <button>
-                        <Typography component="span">About</Typography>
-                      </button>
+                      <a href="/contact" target="_blank">
+                        <button>
+                          <Typography component="span">Contact us</Typography>
+                        </button>
+                      </a>
                     </Link>
                   </Box>
                 )}
@@ -143,14 +152,14 @@ export default function HideAppBar(props) {
                   color="success"
                   align="right"
                   variant="text"
-                  size="medium"
+                  size="large"
                   style={{ borderRadius: 50, color: "black" }}
                   sx={{ my: 2.5 }}
                   onClick={props.modalAdd}
                 >
                   <Typography
                     fontSize={{
-                      lg: 15,
+                      lg: 18,
                       md: 20,
                       sm: 15,
                       xs: 12,
