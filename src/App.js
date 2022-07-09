@@ -9,6 +9,7 @@ import { authentication, database } from "./firebase-config";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import Loading from "./Loading";
 // import Home from "./Homepage/Home";
 // import News from "./Functionality/News";
@@ -28,6 +29,9 @@ const Teachers = React.lazy(() => import("./Functionality/Teachers"));
 const Circular = React.lazy(() => import("./Functionality/Circular"));
 const NotesReader = React.lazy(() => import("./Functionality/NotesReader"));
 const Leaderboard = React.lazy(() => import("./Settings/Leaderboard"));
+const Refund = React.lazy(() => import("./Settings/Refund"));
+const Contact = React.lazy(() => import("./Settings/Contact"));
+const About = React.lazy(() => import("./Settings/About"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,13 +42,12 @@ function App() {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(uid);
+
         authCtx.login(uid, user.displayName, user.email, user.photoURL);
 
         get(child(ref(database), `users/${uid}`))
           .then((snapshot) => {
             if (snapshot.exists()) {
-              console.log(snapshot.child("email").val());
               authCtx.payment(
                 snapshot.child("razorpaypaymentid").val(),
                 snapshot.child("semester").val()
@@ -162,6 +165,15 @@ function App() {
 
           <Route path="/leaderboard" exact>
             <Leaderboard />
+          </Route>
+          <Route path="/refund" exact>
+            <Refund />
+          </Route>
+          <Route path="/contact" exact>
+            <Contact />
+          </Route>
+          <Route path="/about" exact>
+            <About />
           </Route>
         </Switch>
       </React.Suspense>

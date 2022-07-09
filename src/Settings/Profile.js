@@ -29,12 +29,11 @@ const Profile = () => {
     get(child(ref(database), `users/${uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.child("email").val());
           points1 =
             snapshot.child("extrapoints").val() +
             snapshot.child("totaluploads").val() * 20 +
             snapshot.child("totalviews").val() * 10;
-          console.log(points1);
+
           setUploads(snapshot.child("totaluploads").val());
           setPoints(points1);
           setViews(snapshot.child("totalviews").val());
@@ -47,6 +46,10 @@ const Profile = () => {
       });
   }, []);
   const handleChange = (event) => {
+    sessionStorage.setItem("subject", "");
+    sessionStorage.setItem("unit", "");
+    sessionStorage.setItem("topic", "");
+
     setAge(event.target.value);
     console.log(event.target.value);
     authCtx.payment(paymentid, event.target.value);
@@ -68,7 +71,7 @@ const Profile = () => {
     <>
       <Header />
 
-      <div className="bg-slate-100 rounded-2xl drop-shadow-xl my-12 items-center justify-center text-center mx-44 mt-12">
+      <div className="bg-slate-100 rounded-2xl drop-shadow-xl my-12 items-center justify-center text-center mx-7 lg:mx-44 mt-12">
         <h1 className="mt-12 text-slate-100">studybear</h1>
         <Avatar
           alt="Remy Sharp"
@@ -76,10 +79,14 @@ const Profile = () => {
           src={authCtx.photoUrl}
         />
 
-        <h1 className="my-7 font-mono text-4xl">{authCtx.name}</h1>
-        <h1 className="my-7 font-mono text-2xl">{authCtx.email}</h1>
-        <Box sx={{ minWidth: 40 }}>
-          <FormControl sx={{ mt: 5, ml: 3, width: 400 }}>
+        <h1 className="my-7 lg:mx-0 mx-3 font-mono lg:text-4xl text-2xl">
+          {authCtx.name}
+        </h1>
+        <h1 className="my-7 font-mono lg:text-2xl text-base">
+          {authCtx.email}
+        </h1>
+        <Box sx={{ minWidth: 40 }} justifyContent="center" alignItems="center">
+          <FormControl sx={{ mt: 5, ml: 3, width: 1 / 2 }}>
             <InputLabel id="demo-simple-select-label">Semester</InputLabel>
             <Select
               required
@@ -125,7 +132,9 @@ const Profile = () => {
           </FormControl>
         </Box>
         <div className="mt-12 mb-6 mx-16 rounded-xl flex justify-center ">
-          <h1 className="text-3xl font-sans">Your Current Points: {points}</h1>
+          <h1 className="lg:text-3xl text-xl font-sans">
+            Your Current Points: {points}
+          </h1>
           <svg
             className="h-12  relative bottom-3 mx-4 mb-5 w-13"
             xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +144,9 @@ const Profile = () => {
           </svg>
         </div>
         <div className="my-6 mx-16 rounded-xl flex justify-center ">
-          <h1 className="text-3xl font-sans">Your Total Uploads: {uploads}</h1>
+          <h1 className="lg:text-3xl text-xl font-sans">
+            Your Total Uploads: {uploads}
+          </h1>
           <svg
             className="h-12  relative bottom-3 mx-4 mb-5 w-13"
             xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +156,9 @@ const Profile = () => {
           </svg>
         </div>
         <div className="my-6 mx-16 rounded-xl flex justify-center ">
-          <h1 className="text-3xl font-sans">Your Total Views: {views}</h1>
+          <h1 className="lg:text-3xl text-xl font-sans">
+            Your Total Views: {views}
+          </h1>
           <svg
             className="h-12  relative bottom-3 mx-4 mb-5 w-13"
             xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +172,10 @@ const Profile = () => {
           target="_blank"
         >
           <div className="bg-white rounded-b-2xl">
-            <h1 className="font-mono text-2xl">
+            <h1
+              className="font-mono text-base
+              lg:text-2xl"
+            >
               Found a bug? Report Now and get Rewarded💫
             </h1>
           </div>

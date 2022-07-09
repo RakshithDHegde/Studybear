@@ -33,6 +33,7 @@ import banner from "../banner.gif";
 import Header from "./Header";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useMediaQuery } from "react-responsive";
 // const pages = [];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const useStyles = makeStyles({
@@ -61,6 +62,10 @@ const useStyles = makeStyles({
 });
 
 const Home = () => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+
   //   const classes = useStyles();
   const history = useHistory();
   const newsHandler = () => {
@@ -291,19 +296,36 @@ const Home = () => {
         </h1> */}
         {/* Type writing effect */}
         <div className="mt-12 ml-12">
-          <TypeWriterEffect
-            textStyle={{
-              fontFamily: "Red Hat Display",
-              color: "#3F3D56",
-              fontWeight: 500,
-              fontSize: "2.5em",
-            }}
-            startDelay={100}
-            cursorColor="black"
-            text={name}
-            typeSpeed={100}
-            //   scrollArea={myAppRef}
-          />
+          {isDesktopOrLaptop && (
+            <TypeWriterEffect
+              textStyle={{
+                fontFamily: "Red Hat Display",
+                color: "#3F3D56",
+                fontWeight: 500,
+                fontSize: "2.5em",
+              }}
+              startDelay={100}
+              cursorColor="black"
+              text={name}
+              typeSpeed={100}
+              //   scrollArea={myAppRef}
+            />
+          )}
+          {!isDesktopOrLaptop && (
+            <TypeWriterEffect
+              textStyle={{
+                fontFamily: "Red Hat Display",
+                color: "#3F3D56",
+                fontWeight: 500,
+                fontSize: "1.5em",
+              }}
+              startDelay={100}
+              cursorColor="black"
+              text={name}
+              typeSpeed={100}
+              //   scrollArea={myAppRef}
+            />
+          )}
         </div>
         <div className="grid mt-16 lg:grid-cols-3 lg:gap-x-44 lg:gap-12 lg:mx-60 mx-10 gap-5 grid-cols-2  justify-center">
           <div className=" bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
@@ -372,7 +394,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-32 mx-60 drop-shadow-xl object-contain mb-32">
+      <div className=" mt-32 lg:mx-60 mx-7 drop-shadow-xl object-contain mb-32">
         <LazyLoadImage
           effect="blur"
           className="w-full h-92 object-contain"

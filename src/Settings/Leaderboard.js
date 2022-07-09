@@ -7,7 +7,11 @@ import { database } from "../firebase-config";
 import { get, child, ref } from "firebase/database";
 import StarfieldAnimation from "react-starfield-animation";
 import { motion } from "framer-motion";
-
+import {
+  useWindowSize,
+  useWindowWidth,
+  useWindowHeight,
+} from "@react-hook/window-size";
 import Confetti from "react-confetti";
 
 const transition = { duration: 4, yoyo: Infinity, ease: "easeInOut" };
@@ -38,6 +42,8 @@ const AnimatedGradientText = styled.h1`
   -moz-osx-font-smoothing: grayscale;
 `;
 const Leaderboard = () => {
+  const [flag, setFlag] = useState(true);
+  const [width, height] = useWindowSize();
   const [users, setUsers] = useState([]);
   const [finalobj, setFinalobj] = useState([]);
 
@@ -45,7 +51,6 @@ const Leaderboard = () => {
     get(child(ref(database), `users/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val());
           setUsers(Object.values(snapshot.val()));
         } else {
           console.log("No data available");
@@ -54,24 +59,42 @@ const Leaderboard = () => {
       .catch((error) => {
         console.error(error);
       });
+    setTimeout(() => {
+      setFlag(false);
+    }, 5000);
   }, []);
 
   useEffect(() => {
     const transformerdData = users.map((user) => {
-      const totalpoints =
-        user.extrapoints + 20 * user.totaluploads + 10 * user.totalviews;
+      let totalpoints;
+      if (user.extrapoints != null) {
+        totalpoints =
+          user.extrapoints + 20 * user.totaluploads + 10 * user.totalviews;
+      } else {
+        totalpoints = 0;
+      }
 
       return {
         name: user.name,
         totalpoints: totalpoints,
       };
     });
+
     setFinalobj(transformerdData);
   }, [users]);
   finalobj.sort((a, b) => {
     return b.totalpoints - a.totalpoints;
   });
-  finalobj.length = 5;
+
+  const result = finalobj.filter(
+    (data) =>
+      data.name != "RAKSHITH DATTATRAYA HEGDE" &&
+      data.name != "M S SANDEEP KAMATH" &&
+      data.name != "Studybear" &&
+      data.totalpoints != 0
+  );
+  result.length = 5;
+  console.log(result);
   return (
     <>
       <Header />
@@ -81,11 +104,19 @@ const Leaderboard = () => {
             position: "absolute",
             width: "100%",
             height: "100%",
-            numParticles: "500",
+            numParticles: 0,
+            tweenDuration: 5000,
           }}
         />
       </div>
-      <Confetti width={10000} height={1000} gravity={0.2} />
+      {flag && (
+        <Confetti
+          width={width}
+          height={height}
+          gravity={0.1}
+          numberOfPieces="75"
+        />
+      )}
       <div className="flex justify-center my-auto ">
         <AnimatedGradientText className="my-5 mx-2">
           LEADERBOARD{" "}
@@ -127,8 +158,7 @@ const Leaderboard = () => {
         </thead>
 
         <tbody>
-          {finalobj.map((fin) => {
-            console.log(fin);
+          {result.map((fin) => {
             return (
               <>
                 <tr className="w-1/2">

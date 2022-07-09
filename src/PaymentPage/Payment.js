@@ -61,10 +61,10 @@ const Payment = (props) => {
           key: "rzp_live_9JdTljlGTGUHDM",
           key_secret: "X4YVaBxXMUGwfzmKUHxpD3T2",
           // Enter the Key ID generated from the Dashboard
-          amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          amount: "3000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
           currency: "INR",
-          name: "Studybear India pvt ltd",
-          description: "Test Transaction",
+          name: "Studybear",
+          description: "Transaction",
           image:
             "https://camo.githubusercontent.com/6c44d0759b2a3f802ff8ab4d5748ffaf5c50123ce054e1a445844b76ff053107/68747470733a2f2f692e6962622e636f2f43514c683173562f556e7469746c65642d64657369676e626561722e706e67",
 
@@ -168,7 +168,7 @@ const Payment = (props) => {
           </Toolbar>
         </AppBar>
       </Box>
-      <div class="grid grid-rows-3 grid-cols-2 gap-0 fixed top-20 bottom-3 right-80 left-80 z-50  my-16 text-center ">
+      <div class="grid grid-rows-3 grid-cols-2 gap-0 absolute lg:top-20 top-10 lg:-bottom-20 -bottom-14  rights-1/3  lg:right-80 lg:left-80 z-50  mt-16  text-center ">
         <div class="row-span-3 col-span-2 ... bg-white flex flex-wrap justify-center drop-shadow-lg mx-auto ">
           <div className="block justify-center text-left drop-shadow-md mx-auto">
             <h1 className="mx-6 mt-3 text-3xl justify-center  font-semibold font-sans">
@@ -177,7 +177,7 @@ const Payment = (props) => {
             <form onSubmit={formHandler()}>
               <TextField
                 disabled
-                sx={{ mt: 5, ml: 3, width: 400 }}
+                sx={{ mt: 5, ml: 3, width: 3 / 4 }}
                 id="outlined-basic"
                 label="Name"
                 variant="outlined"
@@ -185,7 +185,7 @@ const Payment = (props) => {
               />
               <TextField
                 disabled
-                sx={{ mt: 5, ml: 3, width: 400 }}
+                sx={{ mt: 5, ml: 3, width: 3 / 4 }}
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
@@ -195,7 +195,7 @@ const Payment = (props) => {
 
               <TextField
                 required
-                sx={{ mt: 5, ml: 3, width: 400 }}
+                sx={{ mt: 5, ml: 3, width: 3 / 4 }}
                 id="outlined-number"
                 label="Phone-Number"
                 type="tel"
@@ -205,7 +205,7 @@ const Payment = (props) => {
                 }}
               />
               <Box sx={{ minWidth: 40 }}>
-                <FormControl sx={{ mt: 5, ml: 3, width: 400 }}>
+                <FormControl sx={{ mt: 5, ml: 3, width: 3 / 4 }}>
                   <InputLabel id="demo-simple-select-label">
                     Semester
                   </InputLabel>
@@ -252,13 +252,17 @@ const Payment = (props) => {
                   </Select>
                 </FormControl>
               </Box>
-
-              <button
-                type="submit"
-                className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 inline-flex mx-7 mt-5"
-              >
-                Pay Now
-              </button>
+              <div className="flex">
+                <button
+                  type="submit"
+                  className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 flex mx-7 mt-5"
+                >
+                  Pay Now
+                </button>
+                <h1 className="flex py-2.5 mt-5 mb-2 ml-5">
+                  Only at ₹30/Month
+                </h1>
+              </div>
             </form>
           </div>
         </div>

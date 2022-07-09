@@ -1,4 +1,4 @@
-import Gift from "../gift.png";
+import Gift from "../gift.webp";
 import { motion } from "framer-motion";
 import Fade from "react-reveal/Fade";
 import "./Rewards.css";

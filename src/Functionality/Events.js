@@ -10,7 +10,11 @@ import { database } from "../firebase-config";
 import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 import { update, ref, child, get } from "firebase/database";
+import { useMediaQuery } from "react-responsive";
 const Events = () => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
   const [events, setEvents] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   //   const [error, setError] = useState(null);
@@ -21,7 +25,6 @@ const Events = () => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           a = snapshot.child("extrapoints").val() + 5;
-          console.log(snapshot.child("totalviews").val());
         } else {
           console.log("No data available");
         }
@@ -58,7 +61,6 @@ const Events = () => {
         throw new Error("Something Went Wrong");
       }
       const data = await response.json();
-      console.log(data);
 
       const transformedEvents = data.map((eventsData) => {
         return {
@@ -88,12 +90,14 @@ const Events = () => {
       <div className="fixed top-0 -z-50  h-full w-full overflow-hidden">
         <Three />
       </div>
-      <div className="flex justify-center my-11">
-        <h1 className=" mx-auto text-6xl font-serif">CODING EVENTS</h1>
+      <div className="flex justify-center my-11 text-center">
+        <h1 className=" mx-auto lg:text-6xl text-3xl font-serif">
+          CODING EVENTS
+        </h1>
       </div>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="grid grid-cols-2  justify-center gap-y-24 mx-12   text-center ">
+        <div className="grid lg:grid-cols-2  justify-center gap-y-12 lg:gap-y-24 lg:mx-12 grid-cols-1 my-5   text-center ">
           {events.map((event) => {
             const startDate = new Date(
               Date.parse(event.startTime)
@@ -138,40 +142,82 @@ const Events = () => {
             return (
               <div className="justify-center text-center mx-auto">
                 <a href={event.url} target="_blank">
-                  <Card
-                    style={{
-                      backgroundColor: "white",
-                      width: "450px",
-                      height: "510px",
-                      cursor: "pointer",
-                      p: "auto",
-                      ml: "3",
-                    }}
-                    onClick={() => console.log("Card clicked")}
-                  >
-                    <div className="rounded-lg drop-shadow-3xl  h-full bg-white justify-center">
-                      <LazyLoadImage
-                        effect="blur"
-                        onerror="this.onerror=null; this.src='../doubt.png'"
-                        className="h-64 mx-auto w-full object-contain"
-                        src={image}
-                        onError={({ currentTarget }) => {
-                          currentTarget.onerror = null; // prevents looping
-                          currentTarget.src =
-                            "https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png";
-                        }}
-                      />
-                      <div className="bg-slate-100">
-                        <h2 className="mx-5 font-sans text-xl">{event.name}</h2>
+                  {isDesktopOrLaptop && (
+                    <Card
+                      style={{
+                        backgroundColor: "white",
+                        width: "450px",
+                        height: "510px",
+                        cursor: "pointer",
+                        p: "auto",
+                        ml: "3",
+                      }}
+                      onClick={() => console.log("Card clicked")}
+                    >
+                      <div className="rounded-lg drop-shadow-3xl  h-full bg-white justify-center">
+                        <LazyLoadImage
+                          effect="blur"
+                          onerror="this.onerror=null; this.src='../doubt.png'"
+                          className="h-64 mx-auto w-full object-contain"
+                          src={image}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src =
+                              "https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png";
+                          }}
+                        />
+                        <div className="bg-slate-100">
+                          <h2 className="mx-5 font-sans text-xl">
+                            {event.name}
+                          </h2>
+                        </div>
+                        <h2 className=" text-2xl font-mono my-5 mx-3  ">
+                          Start: {startDate}
+                        </h2>
+                        <h2 className=" font-mono my-5 mx-3 text-2xl ">
+                          End: {endDate}
+                        </h2>
                       </div>
-                      <h2 className=" text-2xl font-mono my-5 mx-3  ">
-                        Start: {startDate}
-                      </h2>
-                      <h2 className=" font-mono my-5 mx-3 text-2xl ">
-                        End: {endDate}
-                      </h2>
-                    </div>
-                  </Card>
+                    </Card>
+                  )}
+                  {!isDesktopOrLaptop && (
+                    <Card
+                      style={{
+                        backgroundColor: "white",
+                        width: "300px",
+                        height: "450px",
+                        cursor: "pointer",
+                        p: "auto",
+                        ml: "3",
+                      }}
+                      onClick={() => console.log("Card clicked")}
+                    >
+                      <div className="rounded-lg drop-shadow-3xl  h-full bg-white justify-center">
+                        <LazyLoadImage
+                          effect="blur"
+                          onerror="this.onerror=null; this.src='../doubt.png'"
+                          className="h-40 mx-auto w-full object-contain"
+                          src={image}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src =
+                              "https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png";
+                          }}
+                        />
+                        <div className="bg-slate-100">
+                          <h2 className="mx-5 font-sans text-xl">
+                            {event.name}
+                          </h2>
+                        </div>
+                        <h2 className=" text-2xl font-mono my-5 mx-3  ">
+                          Start: {startDate}
+                        </h2>
+                        <h2 className=" font-mono my-5 mx-3 text-2xl ">
+                          End: {endDate}
+                        </h2>
+                      </div>
+                    </Card>
+                  )}
                 </a>
               </div>
             );

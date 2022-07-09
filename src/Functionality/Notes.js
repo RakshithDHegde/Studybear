@@ -36,6 +36,7 @@ const Notes = () => {
   const [fileaaa, setFileaaa] = useState("");
   const [pro, setPro] = useState(0);
   const [bar, setBar] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   const myRef = useRef(null);
 
@@ -49,7 +50,6 @@ const Notes = () => {
   const subjectHandler = (event) => {
     setSub(event.target.value);
     sessionStorage.setItem("subject", event.target.value);
-    console.log(JSON.stringify(event.target.value));
   };
   const unitHandler = (event) => {
     sessionStorage.setItem("unit", event.target.value);
@@ -95,7 +95,16 @@ const Notes = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(fileaaa);
-    if (sub === "" || topi === "" || uni === "" || fileaaa === "") {
+    if (
+      sub === "" ||
+      topi === "" ||
+      uni === "" ||
+      fileaaa === "" ||
+      sub === null ||
+      topi === null ||
+      uni === null ||
+      fileaaa === null
+    ) {
       alert("Please enter all the fields");
     } else {
       const storageRef = sRef(storage, fileaaa.name);
@@ -234,6 +243,7 @@ const Notes = () => {
   }, [uni, sub]);
 
   const searchHandler1 = () => {
+    setFlag(true);
     get(
       child(
         ref(database),
@@ -254,7 +264,9 @@ const Notes = () => {
   };
 
   const searchHandler = (event) => {
+    setFlag(true);
     event.preventDefault();
+    console.log(sub);
     if (sub === "" || topi === "" || uni === "") {
       alert("Please enter all fields");
     } else {
@@ -323,12 +335,12 @@ const Notes = () => {
           value={pro}
         />
       )}
-      <h1 className="text-5xl mx-auto mt-6 text-center font-serif mb-6">
+      <h1 className="lg:text-5xl text-3xl mx-auto mt-6 text-center font-serif mb-6">
         Notes
       </h1>
 
-      <div className="text-center justify-center drop-shadow-xl bg-slate-100 mx-96 rounded-2xl ">
-        <FormControl sx={{ my: 3, ml: 3, width: 400 }}>
+      <div className="text-center justify-center drop-shadow-xl bg-slate-100 lg:mx-96 mx-7 rounded-2xl ">
+        <FormControl sx={{ my: 3, ml: 0, width: 3 / 4 }}>
           <InputLabel id="demo-simple-select-label" sx={{ ml: 0.8 }}>
             Subject
           </InputLabel>
@@ -345,7 +357,7 @@ const Notes = () => {
             })}
           </Select>
         </FormControl>
-        <FormControl sx={{ my: 3, ml: 3, width: 400 }}>
+        <FormControl sx={{ my: 3, ml: 0, width: 3 / 4 }}>
           <InputLabel id="demo-simple-select-label-unit" sx={{ ml: 0.8 }}>
             Unit
           </InputLabel>
@@ -362,7 +374,7 @@ const Notes = () => {
             })}
           </Select>
         </FormControl>
-        <FormControl sx={{ my: 3, ml: 3, width: 400 }}>
+        <FormControl sx={{ my: 3, ml: 0, width: 3 / 4 }}>
           <InputLabel id="demo-simple-select-label-unit" sx={{ ml: 0.8 }}>
             Topic
           </InputLabel>
@@ -388,8 +400,9 @@ const Notes = () => {
           <a href="#pdfs">Search</a>
         </button>
         <form onSubmit={submitHandler}>
-          <div className="bg-white mt-9 rounded-b-2xl">
+          <div className="bg-white mt-9 rounded-b-2xl lg:my-0 ">
             <input
+              className="lg:mt-0 mt-4"
               onChange={(event) => {
                 console.log(event.target.files[0]);
                 setFileaaa(event.target.files[0]);
@@ -399,7 +412,7 @@ const Notes = () => {
             ></input>
             <button
               type="submit"
-              className="  bg-sky-400 drop-shadow-lg font-serif text-slate-100 py-2 mx-auto  px-5 rounded-lg  my-2"
+              className="  bg-sky-400 drop-shadow-lg font-serif text-slate-100 py-2 lg:mt-2 mt-3 mx-auto  px-5 rounded-lg  my-2"
             >
               Upload
             </button>
@@ -407,19 +420,25 @@ const Notes = () => {
         </form>
       </div>
       <section>
+        {flag && finalObj.length == 0 && (
+          <img
+            src="https://i.ibb.co/M68QFN0/istockphoto-1296187581-170667a-removebg-preview.png"
+            className="object-contain h-100 w-100 mx-auto lg:my-6 my-3"
+          />
+        )}
         <div
           id="pdfs"
-          className="grid grid-cols-2  gap-4 drop-shadow-xl my-10 rounded-lg  mx-96 justify-center "
+          className="grid lg:grid-cols-2 grid-cols-1  gap-4 drop-shadow-xl my-10 rounded-lg  lg:mx-96 mx-7 justify-center "
           ref={myRef}
         >
           {finalObj.map((obj) => {
             console.log(obj);
             let reputation = "";
             const totalpoints =
-              obj.extrapoints + obj.totaluploads * 20 + obj.totalviews * 1;
-            if (totalpoints > 100) {
+              obj.extrapoints + obj.totaluploads * 20 + obj.totalviews * 10;
+            if (totalpoints > 1000) {
               reputation = "High";
-            } else if (totalpoints < 100 && totalpoints >= 50) {
+            } else if (totalpoints < 1000 && totalpoints >= 400) {
               reputation = "Average";
             } else {
               reputation = "Low";
