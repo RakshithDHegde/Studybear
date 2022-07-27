@@ -18,7 +18,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 const Profile = () => {
   const authCtx = useContext(AuthContext);
-  const [age, setAge] = React.useState(authCtx.semester);
+  // const [age, setAge] = React.useState(authCtx.semester);
+  const [age, setAge] = React.useState(4);
   const [points, setPoints] = useState("");
   const [uploads, setUploads] = useState("");
   const [views, setViews] = useState("");

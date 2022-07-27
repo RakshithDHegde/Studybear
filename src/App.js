@@ -66,6 +66,7 @@ function App() {
       }
     });
     setTimeout(() => {}, 1000);
+    authCtx.payment("abc", 4);
   }, []);
   const isLoggedIn = authCtx.isLoggedIn;
   const payment1 = authCtx.paymentBit;
@@ -91,7 +92,7 @@ function App() {
           </Route>
         )} */}
 
-          {!isLoggedIn && (
+          {!isLoggedIn && !payment1 && (
             <Route path="/payment" exact>
               <Redirect to="/" />
             </Route>
@@ -106,11 +107,11 @@ function App() {
               <Redirect to="/home"></Redirect>
             </Route>
           )}
-          {/* {!isLoggedIn && (
-          <Route path="/home" exact>
-            <Redirect to="/" />
-          </Route>
-        )} */}
+          {!isLoggedIn && (
+            <Route path="/home" exact>
+              <Redirect to="/" />
+            </Route>
+          )}
           {isLoggedIn && payment1 && (
             <Route path="/home" exact>
               <Home />
@@ -166,6 +167,7 @@ function App() {
           <Route path="/leaderboard" exact>
             <Leaderboard />
           </Route>
+
           <Route path="/refund" exact>
             <Refund />
           </Route>
