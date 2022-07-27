@@ -118,6 +118,7 @@ const Home = () => {
   //   };
   const authCtx = useContext(AuthContext);
   const name = `WELCOME ${authCtx.name}`;
+  // const name = `WELCOME`;
 
   return (
     <>

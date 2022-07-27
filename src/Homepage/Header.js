@@ -41,6 +41,7 @@ import banner from "../banner.gif";
 import Leaderboard from "../Settings/Leaderboard";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 const pages = [];
+
 const settings = ["Profile", "Leaderboard", "Logout"];
 const useStyles = makeStyles({
   link: {

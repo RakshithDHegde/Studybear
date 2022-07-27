@@ -11,12 +11,15 @@ import { database } from "../firebase-config";
 import { ref, child, get, set, push } from "firebase/database";
 import { update } from "firebase/database";
 
-import { Viewer } from "@react-pdf-viewer/core";
+import { Viewer, RotatePageEvent } from "@react-pdf-viewer/core";
 
 import Three from "../Homepage/Three";
 
 const NotesReader = (props) => {
   const location = useLocation();
+  const handleRotatePage = (e: RotatePageEvent) => {
+    // ...
+  };
 
   console.log(location);
   console.log(props);
@@ -82,6 +85,7 @@ const NotesReader = (props) => {
               </div>
             )}
             fileUrl={url1}
+            onRotatePage={handleRotatePage}
           />
         </Worker>
       </div>

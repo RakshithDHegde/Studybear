@@ -15,6 +15,7 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 import { useMediaQuery } from "react-responsive";
+import { useHistory } from "react-router-dom";
 
 // import { spacing } from "@mui/system";
 import Text from "./Text";
@@ -76,6 +77,10 @@ export default function HideAppBar(props) {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const classes = useStyles();
+  const history = useHistory();
+  const tempHandler = () => {
+    history.push("/home");
+  };
   return (
     <>
       <div
