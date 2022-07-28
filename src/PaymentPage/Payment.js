@@ -57,59 +57,59 @@ const Payment = (props) => {
         const semnumber = data.semInputElement;
         // const photourl = authCtx.photoUrl;
 
-        var options = {
-          key: "rzp_live_9JdTljlGTGUHDM",
-          key_secret: "X4YVaBxXMUGwfzmKUHxpD3T2",
-          // Enter the Key ID generated from the Dashboard
-          amount: "3000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-          currency: "INR",
-          name: "Studybear",
-          description: "Transaction",
-          image:
-            "https://camo.githubusercontent.com/6c44d0759b2a3f802ff8ab4d5748ffaf5c50123ce054e1a445844b76ff053107/68747470733a2f2f692e6962622e636f2f43514c683173562f556e7469746c65642d64657369676e626561722e706e67",
+        // var options = {
+        //   key: "rzp_live_9JdTljlGTGUHDM",
+        //   key_secret: "X4YVaBxXMUGwfzmKUHxpD3T2",
+        //   // Enter the Key ID generated from the Dashboard
+        //   amount: "3000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        //   currency: "INR",
+        //   name: "Studybear",
+        //   description: "Transaction",
+        //   image:
+        //     "https://camo.githubusercontent.com/6c44d0759b2a3f802ff8ab4d5748ffaf5c50123ce054e1a445844b76ff053107/68747470733a2f2f692e6962622e636f2f43514c683173562f556e7469746c65642d64657369676e626561722e706e67",
 
-          // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-          handler: function (response) {
-            alert(response.razorpay_payment_id);
-            authCtx.payment(response.razorpay_payment_id, semnumber);
-            const paymentid = response.razorpay_payment_id;
-            function UpdateData() {
-              update(ref(database, "users/" + uid), {
-                paidbit: true,
-                extrapoints: 0,
-                totaluploads: 0,
-                totalviews: 0,
-                razorpaypaymentid: paymentid,
-                semester: semnumber,
+        //   // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        //   handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        authCtx.payment("abc", semnumber);
+        const paymentid = "abc";
+        function UpdateData() {
+          update(ref(database, "users/" + uid), {
+            paidbit: true,
+            extrapoints: 0,
+            totaluploads: 0,
+            totalviews: 0,
+            razorpaypaymentid: "abc",
+            semester: semnumber,
 
-                phonenumber: phone1,
-              })
-                .then(() => {})
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
-            UpdateData();
+            phonenumber: phone1,
+          })
+            .then(() => {})
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+        UpdateData();
 
-            // <Redirect to="/home">
-            // alert(response.razorpay_order_id);
-            // alert(response.razorpay_signature);
-          },
-          prefill: {
-            name: { name1 },
-            email: { email1 },
-            contact: { phone1 },
-          },
-          notes: {
-            address: "Razorpay Corporate Office",
-          },
-          theme: {
-            color: "#3399cc",
-          },
-        };
-        var pay = new window.Razorpay(options);
-        pay.open();
-        // window.location.href = "/home";
+        //       // <Redirect to="/home">
+        //       // alert(response.razorpay_order_id);
+        //       // alert(response.razorpay_signature);
+        //     },
+        //     prefill: {
+        //       name: { name1 },
+        //       email: { email1 },
+        //       contact: { phone1 },
+        //     },
+        //     notes: {
+        //       address: "Razorpay Corporate Office",
+        //     },
+        //     theme: {
+        //       color: "#3399cc",
+        //     },
+        //   };
+        //   var pay = new window.Razorpay(options);
+        //   pay.open();
+        //   // window.location.href = "/home";
       } else {
         alert("Invalid Phone Number!");
         console.log("Invalid");
@@ -257,11 +257,8 @@ const Payment = (props) => {
                   type="submit"
                   className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 flex mx-7 mt-5"
                 >
-                  Pay Now
+                  Proceed To Studybear
                 </button>
-                <h1 className="flex py-2.5 mt-5 mb-2 ml-5">
-                  Only at ₹30/Month
-                </h1>
               </div>
             </form>
           </div>

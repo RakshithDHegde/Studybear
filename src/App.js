@@ -66,7 +66,6 @@ function App() {
       }
     });
     setTimeout(() => {}, 1000);
-    authCtx.payment("abc", 4);
   }, []);
   const isLoggedIn = authCtx.isLoggedIn;
   const payment1 = authCtx.paymentBit;

@@ -25,16 +25,16 @@ const googleSignIn = () => {
       //   const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      if (!user.email.includes("@rvce.edu.in")) {
-        alert("Please enter Rvce EMAIL Only!!");
-        deleteUser(user)
-          .then(() => {
-            // User deleted.
-          })
-          .catch((error) => {
-            console.log("Error Abort!!");
-          });
-      }
+      // if (!user.email.includes("@rvce.edu.in")) {
+      //   alert("Please enter Rvce EMAIL Only!!");
+      //   deleteUser(user)
+      //     .then(() => {
+      //       // User deleted.
+      //     })
+      //     .catch((error) => {
+      //       console.log("Error Abort!!");
+      //     });
+      // }
       // ...
     })
     .catch((error) => {
@@ -93,34 +93,34 @@ const Modal = (props) => {
         const email = user.email;
         const photourl = user.photoURL;
 
-        if (user.email.includes("@rvce.edu.in")) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
+        // if (user.email.includes("@rvce.edu.in")) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        // const uid = user.uid;
 
-          setTimeout(() => {
-            authCtx.login(uid, user.displayName, user.email, user.photoURL);
-          }, 2000);
+        setTimeout(() => {
+          authCtx.login(uid, user.displayName, user.email, user.photoURL);
+        }, 2000);
 
-          function UpdateData() {
-            update(ref(database, "users/" + uid), {
-              name: name,
-              email: email,
+        function UpdateData() {
+          update(ref(database, "users/" + uid), {
+            name: name,
+            email: email,
 
-              photourl: photourl,
-            })
-              .then(() => {})
-              .catch((error) => {
-                console.log(error);
-              });
-          }
-          UpdateData();
-
-          // ...
-        } else {
-          // User is signed out
-          // ...
+            photourl: photourl,
+          })
+            .then(() => {})
+            .catch((error) => {
+              console.log(error);
+            });
         }
+        UpdateData();
+
+        // ...
+        // } else {
+        // User is signed out
+        // ...
+        // }
       });
     });
   }, [googleSignIn]);

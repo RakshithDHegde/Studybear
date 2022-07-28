@@ -42,7 +42,8 @@ import Leaderboard from "../Settings/Leaderboard";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 const pages = [];
 
-const settings = ["Profile", "Leaderboard", "Logout"];
+// const settings = ["Profile", "Leaderboard", "Logout"];
+const settings = ["Profile", "Logout"];
 const useStyles = makeStyles({
   link: {
     color: "black",
