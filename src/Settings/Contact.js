@@ -33,6 +33,13 @@ const Contact = () => {
         >
           <span>teamstudybear@gmail.com</span>
         </a>
+        <h1 className="text-xl mt-6">NEWS Publisher Info</h1>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=support@newsapi.org"
+          target="_blank"
+        >
+          <span>support@newsapi.org</span>
+        </a>
       </div>
     </>
   );

@@ -125,7 +125,7 @@ const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const teacherHandler = () => {
-    history.push("/teachers");
+    history.push("/Memes");
     setSidebar(false);
   };
   const eventsHandler = () => {
@@ -391,7 +391,7 @@ const Header = (props) => {
                     src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
                     className="h-11"
                   />
-                  <h2 className="mx-auto">Teachers</h2>
+                  <h2 className="mx-auto">Memes</h2>
                 </button>
               </Link>
             </button>
@@ -487,9 +487,7 @@ const Header = (props) => {
                       src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
                       className="h-9"
                     />
-                    <span class="flex-1 ml-3 whitespace-nowrap">
-                      Connect To Teachers
-                    </span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Memes</span>
                   </button>
                 </li>
               </ul>

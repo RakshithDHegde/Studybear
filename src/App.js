@@ -25,7 +25,7 @@ const Notes = React.lazy(() => import("./Functionality/Notes"));
 const Events = React.lazy(() => import("./Functionality/Events"));
 const Discuss = React.lazy(() => import("./Functionality/Discuss"));
 const Profile = React.lazy(() => import("./Settings/Profile"));
-const Teachers = React.lazy(() => import("./Functionality/Teachers"));
+const Memes = React.lazy(() => import("./Functionality/Memes"));
 const Circular = React.lazy(() => import("./Functionality/Circular"));
 const NotesReader = React.lazy(() => import("./Functionality/NotesReader"));
 const Leaderboard = React.lazy(() => import("./Settings/Leaderboard"));
@@ -143,13 +143,8 @@ function App() {
             </Route>
           )}
           {isLoggedIn && payment1 && (
-            <Route path="/teachers" exact>
-              <Teachers />
-            </Route>
-          )}
-          {isLoggedIn && payment1 && (
-            <Route path="/teachers" exact>
-              <Teachers />
+            <Route path="/Memes" exact>
+              <Memes />
             </Route>
           )}
           {isLoggedIn && payment1 && (

@@ -81,7 +81,7 @@ const Home = () => {
     history.push("/discuss");
   };
   const teacherHandler = () => {
-    history.push("/teachers");
+    history.push("/memes");
   };
   const circularHandler = () => {
     history.push("/circulars");
@@ -390,7 +390,7 @@ const Home = () => {
                 src="https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="block mb-2">Connect to Teacher</h2>
+              <h2 className="block mb-2">Memes</h2>
             </button>
           </div>
         </div>
