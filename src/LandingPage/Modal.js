@@ -125,13 +125,11 @@ const Modal = (props) => {
     });
   }, [googleSignIn]);
   useEffect(() => {
-    setTimeout(() => {
-      if (authCtx.isLoggedIn && !authCtx.paymentBit) {
-        history.push("/payment");
-      } else if (authCtx.isLoggedIn && authCtx.paymentBit) {
-        history.push("/home");
-      }
-    }, 1000);
+    if (authCtx.isLoggedIn && !authCtx.paymentBit) {
+      history.push("/payment");
+    } else if (authCtx.isLoggedIn && authCtx.paymentBit) {
+      history.push("/home");
+    }
   }, [authCtx]);
 
   setTimeout(() => {
@@ -194,7 +192,7 @@ const Modal = (props) => {
                   Sign in with Google
                 </button>
               </div>
-              <p className="text-sm mt-4">🔒Use RVCE e-mail id only</p>
+              <p className="text-sm mt-4">🔒All your information is secured</p>
             </div>
           </div>
         </div>

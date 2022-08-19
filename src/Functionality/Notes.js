@@ -14,6 +14,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { uploadBytesResumable } from "firebase/storage";
 import { storage } from "../firebase-config";
 import { ref as sRef, getDownloadURL } from "firebase/storage";
+
 import { update } from "firebase/database";
 // import { push } from "firebase/database";
 
@@ -41,6 +42,34 @@ const Notes = () => {
   const myRef = useRef(null);
 
   const executeScroll = () => myRef.current.scrollIntoView();
+  let a = 0;
+  const updater = (uid) => {
+    get(child(ref(database), `users/${uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          a = snapshot.child("totalviews").val() + 1;
+
+          function UpdateData() {
+            update(ref(database, `users/${uid}`), {
+              totalviews: a,
+            })
+              .then(() => {})
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+          UpdateData();
+        } else {
+          console.log("No data available");
+        }
+        console.log(a);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    console.log(a);
+  };
 
   // const fileHandler = (event) => {
   //   setFile(event.target[0].files[0]);
@@ -447,11 +476,16 @@ const Notes = () => {
             const url = obj.url;
 
             return (
-              <Link
-                to={{
-                  pathname: "/reader",
-                  state: { hoo: obj.url, uid: obj.uid },
-                }}
+              // <Link
+              //   to={{
+              //     pathname: "/reader",
+              //     state: { hoo: obj.url, uid: obj.uid },
+              //   }}
+              // >
+              <a
+                href={obj.url}
+                target="_blank"
+                onClick={() => updater(obj.uid)}
               >
                 <div
                   className=" bg-slate-100 rounded-lg text-center "
@@ -465,7 +499,8 @@ const Notes = () => {
                   <h1 className="">Author's Name: {obj.name}</h1>
                   <h1 className="my-4">Reputation: {reputation}</h1>
                 </div>
-              </Link>
+              </a>
+              // </Link>
             );
           })}
         </div>

@@ -26,11 +26,7 @@
         document.body || document.documentElement
       );
     </script> -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5634416739025689"
-      crossorigin="anonymous"
-    ></script>
+
     <meta
       name="google-site-verification"
       content="Pn9JtKpY5JNkfU_YkiN1N7JCNTq6dqKS7BbCRb6mzpg"
@@ -46,12 +42,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
-      name="Studybear"
-      content="One stop solution for Learning, from Notes to Connecting experts"
+      name="CS||IS Notes -Studybear"
+      content="One stop solution for Learning, from Notes to knowing about Coding Events"
     />
     <meta
       name="description"
-      content="One stop solution for Learning from Notes to Connecting experts. Studybear only for Students of RVCE"
+      content="One stop solution for Learning from Notes to knowing about Coding Events.Check Out Now!!! "
+    />
+    <meta
+      name="keywords"
+      content="Notes, Computer Science, CS, Information Science, IS, Learning, Studybear"
     />
 
     <!--
@@ -112,9 +112,28 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
 
-    <title>Studybear</title>
+    <title>CS,IS Notes -Studybear</title>
   </head>
   <body>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("serviceWorker.js").then(
+            function (registration) {
+              // Registration was successful
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            },
+            function (err) {
+              // registration failed :(
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe

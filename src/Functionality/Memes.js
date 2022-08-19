@@ -6,12 +6,41 @@ import { UserCard } from "react-ui-cards";
 import Fade from "react-reveal/Fade";
 import { CardSwiper } from "react-card-rotate-swiper";
 import TinderCard from "react-tinder-card";
+import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 import Loading from "../Loading";
 import React from "react";
 import { useCallback } from "react";
-import Cards, { Card } from "react-swipe-card";
 import { createActions, handleActions, combineActions } from "redux-actions";
+import SwipeableViews from "react-swipeable-views";
+import { useDrag } from "@use-gesture/react";
+import { useSprings, animated, interpolate } from "react-spring";
+import { useGesture } from "@use-gesture/react";
+import styles from "./styles.module.css";
+import { Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+SwiperCore.use([EffectCoverflow, Pagination]);
+// const to = (i: number) => ({
+//   x: 0,
+//   y: i * -4,
+//   scale: 1,
+//   rot: -10 + Math.random() * 20,
+//   delay: i * 100,
+// });
+// const from = (_i: number) => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
+// // This is being used down there in the view, it interpolates rotation and scale into a css transform
+// const trans = (r: number, s: number) =>
+//   `perspective(1500px) rotateX(30deg) rotateY(${
+//     r / 10
+//   }deg) rotateZ(${r}deg) scale(${s})`;
+
 const Memes = () => {
+  const [arr, setArr] = useState([]);
+
   // const [datab, setDatab] = useState([]);
   // useEffect(() => {
   //   get(child(ref(database), `branch/is/teachers`))
@@ -92,25 +121,29 @@ const Memes = () => {
   //     </div>
   //   </>
   // );
-  const [arr, setArr] = useState([]);
+
   const [isLoading, setIsloading] = useState(false);
   const fetchMemesHandler = useCallback(async () => {
     setIsloading(true);
     // setError(null);
 
     try {
-      const response = await fetch("https://meme-api.herokuapp.com/gimme/50");
+      const response = await fetch(
+        "https://meme-api.herokuapp.com/gimme/wholesomememes/50"
+      );
       if (!response.ok) {
         throw new Error(response);
       }
       const data = await response.json();
 
       const transformedMeme = data.memes.map((memeData) => {
-        return {
-          url: memeData.url,
-        };
+        // return {
+        //   url: memeData.url,
+        // };
+        return { url: memeData.url };
+        // return memeData.url;
       });
-
+      console.log(transformedMeme);
       setIsloading(false);
       setArr(transformedMeme);
       console.log(arr);
@@ -124,24 +157,40 @@ const Memes = () => {
     fetchMemesHandler();
     console.log(arr);
   }, [fetchMemesHandler]);
-  const onSwipe = (direction) => {
-    console.log("You swiped: " + direction);
-  };
 
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + " left the screen");
-  };
+  // const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
+  // const [props, api] = useSprings(arr.length, (i) => ({
+  //   ...to(i),
+  //   from: from(i),
+  // })); // Create a bunch of springs using the helpers above
+  // // Create a gesture, we're interested in down-state, delta (current-pos - click-pos), direction and velocity
+  // const bind = useDrag(
+  //   ({ args: [index], down, movement: [mx], direction: [xDir], velocity }) => {
+  //     const trigger = velocity > 0.2; // If you flick hard enough it should trigger the card to fly out
+  //     const dir = xDir < 0 ? -1 : 1; // Direction should either point left or right
+  //     if (!down && trigger) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
+  //     set((i) => {
+  //       if (index !== i) return; // We're only interested in changing spring-data for the current spring
+  //       const isGone = gone.has(index);
+  //       const x = isGone ? (200 + window.innerWidth) * dir : down ? mx : 0; // When a card is gone it flys out left or right, otherwise goes back to zero
+  //       const rot = mx / 100 + (isGone ? dir * 10 * velocity : 0); // How much the card tilts, flicking it harder makes it rotate faster
+  //       const scale = down ? 1.1 : 1; // Active cards lift up a bit
+  //       return {
+  //         x,
+  //         rot,
+  //         scale,
+  //         delay: undefined,
+  //         config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
+  //       };
+  //     });
+  //     if (!down && gone.size === arr.length)
+  //       setTimeout(() => gone.clear() || set((i) => to(i)), 600);
+  //   }
+  // );
+  const slides = Array.from({ length: 1000 }).map(
+    (el, index) => `Slide ${index + 1}`
+  );
 
-  const [lastDirection, setLastDirection] = useState();
-
-  const swiped = (direction, nameToDelete) => {
-    console.log("removing: " + nameToDelete);
-    setLastDirection(direction);
-  };
-
-  const outOfFrame = (name) => {
-    console.log(name + " left the screen!");
-  };
   return (
     <>
       <Header />
@@ -151,53 +200,37 @@ const Memes = () => {
         <div className="flex justify-center my-11">
           <h1 className=" mx-auto lg:text-6xl text-3xl font-serif">MEMES😂</h1>
         </div>
-        <div className="mx-12 ">
-          <Cards onEnd={action("end")} className="master-root">
-            {arr.map((ar) => (
-              //   <div className="absolute my-12 mx-auto object-contain justify-center  w-1/2 h-1/2 ">
-              /* <TinderCard
-                onSwipe={onSwipe}
-                onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-                className=" mx-10 my-10"
-                flickOnSwipe={true}
-              >
-                <div className="h-1/2 justify-center mx-auto">
-                  <img
-                    height="100"
-                    // width={1000}
-                    className="object-cover my-20"
-                    src={ar.url}
-                  ></img>
-                </div>
-              </TinderCard> */
-              /* <TinderCard
-                className="swipe"
-                key={ar.url}
-                onSwipe={(dir) => swiped(dir, ar.url)}
-                onCardLeftScreen={() => outOfFrame(ar.url)}
-              >
-                <div
-                  style={{ backgroundImage: "url(" + ar.url + ")" }}
-                  className="card h-full w-full absolute width-1/2"
-                ></div>
-              </TinderCard> */
-              //   </div>
-              <Card
-                onSwipeLeft={action("swipe left")}
-                onSwipeRight={action("swipe right")}
-              >
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={false}
+          className="mySwiper mt-0"
+        >
+          {arr.map((ar) => (
+            <SwiperSlide className="h-full">
+              <div className="lg:w-3/4 lg:h-3/4 lg:scale-70 my-auto mx-auto justify-center text-center">
                 <img
-                  height="100"
-                  // width={1000}
-                  className="object-cover my-20"
                   src={ar.url}
+                  className="lg:h-96 my-auto  lg:w-full object-contain 	;"
+                  width="100%"
+                  height="50%"
                 ></img>
-              </Card>
-            ))}
-          </Cards>
-        </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );
 };
+
 export default Memes;

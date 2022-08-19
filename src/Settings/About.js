@@ -17,19 +17,21 @@ const About = () => {
         <div className="grid grid-cols-2">
           <div>
             <h1 className="text-white text-xl mt-16 ml-7">
-              At Studybear, we aspire to change the path one takes to be an
-              engineer. We aim to provide a platform to upload and read
-              notes...We also provide students with daily tech news,circulars
-              and also help them in connecting with teachers.Students who upload
-              their notes would be given Goodies and vouchers as a token of
-              Gratitude.We aim in making a enginnering's student life easy.
+              Our goal at Studybear is to alter the route that one takes to
+              become an engineer(IT). We want to offer a place where people may
+              upload and read notes. We also give students access to daily tech
+              news, coding event announcements, memes, and more! . By expanding
+              the Studybear family, we hope to make life easier for students
+              pursuing engineering(CSE/ISE/IT/AI/DS). We would like to express
+              our gratitude to Dr. B M Sagar (Professor and HOD of ISE, R V
+              College of Engineering) for his constant support and direction.
             </h1>
           </div>
         </div>
       </div>
 
       <div className="flex relative top-96 text-center   justify-center my-20 mx-auto">
-        <div className="grid lg:grid-cols-2 lg:gap-80 mx-auto grid-cols-1 text-center justify-center">
+        <div className="grid lg:grid-cols-2 lg:gap-80 mt-12 mx-auto grid-cols-1 text-center justify-center">
           <div class="container mx-auto">
             <div class="card">
               <div class="imgBx">

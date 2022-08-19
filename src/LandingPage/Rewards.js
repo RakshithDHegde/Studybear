@@ -11,15 +11,15 @@ const Rewards = () => {
           transition={{ repeat: Infinity, duration: 2.5 }}
           className="justify-center"
         >
-          <img src={Gift} className="ima justify-center mx-auto" />
+          <img src={Gift} className="ima justify-center mx-auto mb-4" />
         </motion.div>
         <div className="text-center mx-auto">
           <h1 className="lg:text-8xl lg:mx-7  text-center text-5xl mx-auto">
-            Get Exciting Rewards!!
+            Get all CS,IS Notes at your Fingertips!!
           </h1>
-          <h2 className="lg:ml-8 lg:text-lg lg:mt-8 text-xl text-center mt-5 mx-auto font-sans">
+          {/* <h2 className="lg:ml-8 lg:text-lg lg:mt-8 text-xl text-center mt-5 mx-auto font-sans">
             Get rewarded for uploading your notes💥💥
-          </h2>
+          </h2> */}
         </div>
       </div>
     </Fade>

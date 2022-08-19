@@ -26,7 +26,7 @@ const Events = React.lazy(() => import("./Functionality/Events"));
 const Discuss = React.lazy(() => import("./Functionality/Discuss"));
 const Profile = React.lazy(() => import("./Settings/Profile"));
 const Memes = React.lazy(() => import("./Functionality/Memes"));
-const Circular = React.lazy(() => import("./Functionality/Circular"));
+const Games = React.lazy(() => import("./Functionality/Games"));
 const NotesReader = React.lazy(() => import("./Functionality/NotesReader"));
 const Leaderboard = React.lazy(() => import("./Settings/Leaderboard"));
 const Refund = React.lazy(() => import("./Settings/Refund"));
@@ -36,34 +36,33 @@ const About = React.lazy(() => import("./Settings/About"));
 function App() {
   const [loading, setLoading] = useState(true);
   const authCtx = useContext(AuthContext);
+
   useEffect(() => {
     onAuthStateChanged(authentication, (user) => {
-      if (user.email.includes("@rvce.edu.in")) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
 
-        authCtx.login(uid, user.displayName, user.email, user.photoURL);
+      authCtx.login(uid, user.displayName, user.email, user.photoURL);
 
-        get(child(ref(database), `users/${uid}`))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              authCtx.payment(
-                snapshot.child("razorpaypaymentid").val(),
-                snapshot.child("semester").val()
-              );
-            } else {
-              console.log("No data available");
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-        // ...
-      } else {
-        // User is signed out
-        // ...
-      }
+      get(child(ref(database), `users/${uid}`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            authCtx.payment(
+              snapshot.child("razorpaypaymentid").val(),
+              snapshot.child("semester").val()
+            );
+          } else {
+            console.log("No data available");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      // ...
+
+      // User is signed out
+      // ...
     });
     setTimeout(() => {}, 1000);
   }, []);
@@ -148,8 +147,8 @@ function App() {
             </Route>
           )}
           {isLoggedIn && payment1 && (
-            <Route path="/circulars" exact>
-              <Circular />
+            <Route path="/games" exact>
+              <Games />
             </Route>
           )}
           {isLoggedIn && payment1 && (

@@ -64,7 +64,8 @@ const Text = (props) => {
       >
         <div className="grid lg:grid-cols-2 grid-cols-1 pt-4 gap-2 relative lg:bottom-36 lg:mt-0 mt-3  bottom-8">
           <h4 className="lg:text-lg text-base font-medium font-serif subpixel-antialiased  ">
-            One stop solution for Learning---from Notes to Connecting experts---
+            One stop solution for Learning---from Notes to knowing about
+            events---
             <spans className="text-3xl">studybear</spans> has it all
           </h4>
         </div>

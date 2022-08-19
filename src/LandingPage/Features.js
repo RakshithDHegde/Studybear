@@ -31,7 +31,7 @@ const Features = () => {
               Doubts??
             </h1>
             <h1 className="text-sky-300 lg:text-5xl lg:mx-20 lg:py-10 mx-12 text-4xl py-12 font-semibold font-sans">
-              Connect to your Peers and Teachers
+              Connect to your Peers and interact in our Discord server!!
             </h1>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Features = () => {
             />
 
             <h1 className="text-white lg:text-5xl lg:mx-20 lg:py-10 font-semibold text-4xl mx-12 my-12 font-sans">
-              Get updated about all the Events and more.....at ₹30/Month
+              Get updated about all the Events and more...
             </h1>
           </div>
         </div>
@@ -219,11 +219,7 @@ const Features = () => {
                     Privacy Policy
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="/refund" class="hover:underline" target="_blank">
-                    Refund and Cancellation Policy
-                  </a>
-                </li>
+
                 <li class="mb-4">
                   <a href="/contact" class="hover:underline" target="_blank">
                     Contact us

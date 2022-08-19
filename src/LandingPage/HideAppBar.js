@@ -141,17 +141,6 @@ export default function HideAppBar(props) {
                     </Link>
                   </Box>
                 )}
-                {isDesktopOrLaptop && (
-                  <Box sx={{ my: 4, mr: 4, ml: 2 }}>
-                    <Link underline="never" className={classes.link}>
-                      <a href="/contact" target="_blank">
-                        <button>
-                          <Typography component="span">Contact us</Typography>
-                        </button>
-                      </a>
-                    </Link>
-                  </Box>
-                )}
 
                 <Button
                   color="success"

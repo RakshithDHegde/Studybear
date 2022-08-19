@@ -150,7 +150,7 @@ const Header = (props) => {
     setSidebar(false);
   };
   const circularHandler = () => {
-    history.push("/circulars");
+    history.push("/games");
     setSidebar(false);
   };
 
@@ -312,11 +312,11 @@ const Header = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-
+      <div></div>
       {isDesktopOrLaptop && (
         <div
           id="back-to-top-anchor"
-          className="grid grid-rows-1 grid-flow-col gap-40 bg-white drop-shadow-xl   justify-center z-50"
+          className="grid grid-rows-1 grid-flow-col gap-40 bg-white drop-shadow-xl justify-center z-50"
         >
           <div class="row-span-1 ... justify-center flex flex-wrap text-center  my-auto ">
             <button className="">
@@ -375,10 +375,10 @@ const Header = (props) => {
               <Link sx={{ p: "2" }} underline="never" className={classes.link}>
                 <button onClick={circularHandler}>
                   <img
-                    src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
+                    src="https://img.icons8.com/ios-filled/344/controller.png"
                     className="h-11"
                   />
-                  <h2 className="mx-auto">Circulars</h2>
+                  <h2 className="mx-auto">Games</h2>
                 </button>
               </Link>
             </button>
@@ -388,7 +388,7 @@ const Header = (props) => {
               <Link sx={{ p: "2" }} underline="never" className={classes.link}>
                 <button>
                   <img
-                    src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
+                    src="https://i.ibb.co/0qJkpz5/icons8-trollface-48.png"
                     className="h-11"
                   />
                   <h2 className="mx-auto">Memes</h2>
@@ -472,10 +472,10 @@ const Header = (props) => {
                     class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
                   >
                     <img
-                      src="https://img.icons8.com/ios/50/000000/appointment-reminders--v1.png"
+                      src="https://img.icons8.com/ios-filled/344/controller.png"
                       className="h-9"
                     />
-                    <span class="flex-1 ml-3 whitespace-nowrap">Circulars</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Games</span>
                   </button>
                 </li>
                 <li className="pb-12">
@@ -484,7 +484,7 @@ const Header = (props) => {
                     class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
                   >
                     <img
-                      src="https://img.icons8.com/external-edtim-outline-edtim/50/000000/external-People_33-people-edtim-outline-edtim.png"
+                      src="https://i.ibb.co/0qJkpz5/icons8-trollface-48.png"
                       className="h-9"
                     />
                     <span class="flex-1 ml-3 whitespace-nowrap">Memes</span>

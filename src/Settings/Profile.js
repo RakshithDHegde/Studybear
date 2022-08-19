@@ -177,7 +177,7 @@ const Profile = () => {
               className="font-mono text-base
               lg:text-2xl"
             >
-              Found a bug? Report Now and get Rewarded💫
+              Found a bug? Report Now!!
             </h1>
           </div>
         </a>

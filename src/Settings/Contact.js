@@ -5,14 +5,14 @@ const Contact = () => {
         <h1 className="text-4xl ml-4 my-4">Contact us</h1>
         <h2 className="text-xl">Operating Address:</h2>
         <h1>
-          <span>No 115,1st Cross</span>
+          <span>Is 224,1st Floor</span>
         </h1>
         <h1>
-          <span>14th Block,Nagarbhavi 2nd Stage</span>
+          <span>Ise Department,RV College of Engineering</span>
         </h1>
         <h1>
           {" "}
-          <span>Bengaluru, Karnataka 560072</span>
+          <span>Bengaluru, Karnataka 560059</span>
         </h1>
         <h1 className="text-xl mt-6">Phone numbers</h1>
         <h1>

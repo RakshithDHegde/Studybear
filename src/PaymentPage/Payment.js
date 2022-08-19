@@ -91,11 +91,11 @@ const Payment = (props) => {
         }
         UpdateData();
 
-        //       // <Redirect to="/home">
-        //       // alert(response.razorpay_order_id);
-        //       // alert(response.razorpay_signature);
-        //     },
-        //     prefill: {
+        //       <Redirect to="/home">
+        // //       // alert(response.razorpay_order_id);
+        // //       // alert(response.razorpay_signature);
+        // //     },
+        // //     prefill: {
         //       name: { name1 },
         //       email: { email1 },
         //       contact: { phone1 },
@@ -172,7 +172,7 @@ const Payment = (props) => {
         <div class="row-span-3 col-span-2 ... bg-white flex flex-wrap justify-center drop-shadow-lg mx-auto ">
           <div className="block justify-center text-left drop-shadow-md mx-auto">
             <h1 className="mx-6 mt-3 text-3xl justify-center  font-semibold font-sans">
-              Payment
+              Please fill the Details
             </h1>
             <form onSubmit={formHandler()}>
               <TextField

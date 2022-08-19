@@ -84,7 +84,7 @@ const Home = () => {
     history.push("/memes");
   };
   const circularHandler = () => {
-    history.push("/circulars");
+    history.push("/games");
   };
   //   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -377,17 +377,17 @@ const Home = () => {
             <button onClick={circularHandler}>
               <LazyLoadImage
                 effect="blur"
-                src={circular}
+                src="https://i.ibb.co/Tct6BsB/game-controller-4035922-3342601-0.webp"
                 className="h-24 mx-auto mt-2 "
               />
-              <h2 className="block mb-2">Circulars</h2>
+              <h2 className="block mb-2">Games</h2>
             </button>
           </div>
           <div className="bg-slate-100 drop-shadow-xl hover:backdrop-blur- text-center rounded-xl  inline  justify-center">
             <button onClick={teacherHandler}>
               <LazyLoadImage
                 effect="blur"
-                src="https://i.ibb.co/ssFrJX8/casual-life-3d-young-man-sitting-at-green-desk-and-raising-his-hand-min.png"
+                src="https://i.ibb.co/pfZwBrN/funny-activity-3027486-2526705.webp"
                 className="h-24 mx-auto mt-2 "
               />
               <h2 className="block mb-2">Memes</h2>
