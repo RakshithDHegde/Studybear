@@ -1,9 +1,9 @@
 # Getting Started with Create React App
 
 
-
+<p align="center">
 <img src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" align="center" alt="Untitled-designbear" allign="center" border="0">
-
+</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
