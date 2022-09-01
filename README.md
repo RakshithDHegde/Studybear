@@ -2,7 +2,7 @@
 
 
 
-<img src="https://i.ibb.co/CQLh1sV/Untitled-designbear.png" alt="Untitled-designbear" allign="center" border="0">
+<img src="https://i.postimg.cc/tCmSznBP/Study-Bear.png" alt="Untitled-designbear" allign="center" border="0">
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
