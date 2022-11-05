@@ -66,7 +66,7 @@ const Features = () => {
                 <div class="imgBx">
                   <img
                     className="mx-auto"
-                    src="https://i.ibb.co/k3w74vD/rakshith-min.png"
+                    src="https://i.postimg.cc/F15xxKKM/Whats-App-Image-2022-09-01-at-9-24-49-AM-removebg-preview.png"
                   />
                 </div>
                 <div class="contentBx">
@@ -80,7 +80,7 @@ const Features = () => {
                       >
                         <button>
                           <img
-                            src="https://i.ibb.co/p3SJYZN/baed96e75b970d18230eddea2ea76a36.png"
+                            src="https://cdn3d.iconscout.com/3d/free/thumb/instagram-4703914-3915166.png"
                             className="h-20 w-20 object-contain"
                           ></img>
                         </button>
@@ -89,8 +89,8 @@ const Features = () => {
                     <form action="https://wa.me/916362497977" target="_blank">
                       <button type="submit">
                         <img
-                          src="https://i.ibb.co/k97MbXj/whatsapp.png"
-                          className="h-10 w-20 object-contain"
+                          src="https://cdn3d.iconscout.com/3d/free/thumb/whatsapp-4703919-3915171.png"
+                          className="h-20 w-20 object-contain"
                         ></img>
                       </button>
                     </form>
@@ -100,8 +100,8 @@ const Features = () => {
                     >
                       <button>
                         <img
-                          src="https://i.ibb.co/nR2D5j9/linkedin-min.png"
-                          className="h-10 w-20 object-contain"
+                          src="https://cdn3d.iconscout.com/3d/free/thumb/linkedin-2950130-2447889.png"
+                          className="h-20 w-20 object-contain"
                         ></img>
                       </button>
                     </form>
@@ -114,7 +114,7 @@ const Features = () => {
                 <div class="imgBx">
                   <img
                     className="mx-auto"
-                    src="https://i.ibb.co/NLMXRBN/sandeep-min.png"
+                    src="https://i.postimg.cc/wTXrGKdX/Whats-App-Image-2022-09-01-at-9-24-55-AM-removebg-preview.png"
                   />
                 </div>
                 <div class="contentBx">
@@ -123,12 +123,12 @@ const Features = () => {
                   <div className="size">
                     <div className>
                       <form
-                        action="https://www.instagram.com/_msandeep_kamath_/"
+                        action="https://www.instagram.com/_mssandeep_kamath_/"
                         target="_blank"
                       >
                         <button>
                           <img
-                            src="https://i.ibb.co/p3SJYZN/baed96e75b970d18230eddea2ea76a36.png"
+                            src="https://cdn3d.iconscout.com/3d/free/thumb/instagram-4703914-3915166.png"
                             className="h-20 w-20 object-contain"
                           ></img>
                         </button>
@@ -137,8 +137,8 @@ const Features = () => {
                     <form action="https://wa.me/918618743756" target="_blank">
                       <button type="submit">
                         <img
-                          src="https://i.ibb.co/k97MbXj/whatsapp.png"
-                          className="h-10 w-20 object-contain"
+                          src="https://cdn3d.iconscout.com/3d/free/thumb/whatsapp-4703919-3915171.png"
+                          className="h-20 w-20 object-contain"
                         ></img>
                       </button>
                     </form>
@@ -148,8 +148,8 @@ const Features = () => {
                     >
                       <button>
                         <img
-                          src="https://i.ibb.co/nR2D5j9/linkedin-min.png"
-                          className="h-10 w-20 object-contain"
+                          src="https://cdn3d.iconscout.com/3d/free/thumb/linkedin-2950130-2447889.png"
+                          className="h-20 w-20 object-contain"
                         ></img>
                       </button>
                     </form>

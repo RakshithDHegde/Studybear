@@ -493,7 +493,7 @@ const Notes = () => {
                 >
                   <LazyLoadImage
                     className="object-contain h-60 mx-auto my-4"
-                    src="https://i.ibb.co/jfvtB8F/pdf-file-4059096-3364019.png"
+                    src="https://i.postimg.cc/jSxWRR8L/pdf.webp"
                     effect="blur"
                   />
                   <h1 className="">Author's Name: {obj.name}</h1>

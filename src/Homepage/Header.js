@@ -19,6 +19,7 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useMediaQuery } from "react-responsive";
 import Logo from "../LandingPage/Logo";
+import { Helmet } from "react-helmet";
 
 import Slide from "@mui/material/Slide";
 import logo from "../StudyBear.png";

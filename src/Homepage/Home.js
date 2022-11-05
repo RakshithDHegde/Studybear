@@ -34,6 +34,8 @@ import Header from "./Header";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useMediaQuery } from "react-responsive";
+import { Helmet } from "react-helmet";
+import ScriptTag from "react-script-tag";
 // const pages = [];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const useStyles = makeStyles({
@@ -333,7 +335,7 @@ const Home = () => {
             <button onClick={notesHandler}>
               <LazyLoadImage
                 effect="blur"
-                src="https://i.ibb.co/7XY8C5r/business-3d-girl-with-a-book-1-min.png"
+                src="https://i.postimg.cc/P5SCx0cK/dfb492a7-6978-48a0-a5bf-99801b273d13.png"
                 className="h-24 mx-auto mt-2 block "
               />
               <h2 className="block mb-2 ">Notes</h2>
@@ -345,7 +347,7 @@ const Home = () => {
               <button>
                 <LazyLoadImage
                   effect="blur"
-                  src="https://i.ibb.co/88RpXrF/casual-life-3d-girl-chatting-remotely-with-group-of-three-people-min.png"
+                  src="https://i.postimg.cc/mZ91wXz2/discord.webp"
                   className="h-24 mx-auto mt-2 "
                 />
                 <h2 className="block mb-2">Discussion</h2>
@@ -357,7 +359,7 @@ const Home = () => {
             <button onClick={eventsHandler}>
               <LazyLoadImage
                 effect="blur"
-                src="https://i.ibb.co/DKSbNk8/business-3d-min.png"
+                src="https://i.postimg.cc/FHnNLvxW/nft-coding-6117176-4998601.webp"
                 className="h-24 mx-auto mt-2 "
               />
               <h2 className="block mb-2">Coding Events</h2>
@@ -367,8 +369,8 @@ const Home = () => {
             <button onClick={newsHandler}>
               <LazyLoadImage
                 effect="blur"
-                src="https://i.ibb.co/vJmFZpJ/business-3d-well-done-min.png"
-                className="h-24 mx-auto mt-2 "
+                src="https://i.postimg.cc/c4Ng5Rw7/news.webp"
+                className="h-24  mx-auto mt-2 "
               />
               <h2 className="block mb-2">News</h2>
             </button>
